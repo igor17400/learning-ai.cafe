@@ -1,7 +1,22 @@
 {
   "_note": "Appended by CI from merged pull requests.",
   "users": {
-    "@igor17400": { "name": "Igor Lima", "hue": 28, "github": "igor17400" }
+    "@igor17400": {
+      "name": "Igor Lima",
+      "hue": 28,
+      "github": "igor17400"
+    }
   },
-  "contributions": []
+  "contributions": [
+    {
+      "page": "cafe/attention/intro",
+      "date": "2026-09-21",
+      "by": "@igor17400",
+      "type": "page",
+      "score": 8,
+      "what": "Add the \"Why Attention?\" chapter to the Attention tutorial",
+      "pr": 1,
+      "figures": ["bottleneck_rnn", "lookup_not_memorise"]
+    }
+  ]
 }
