@@ -1,0 +1,7 @@
+#!/bin/sh
+# Format staged files with the repo's Prettier config, so a commit never depends
+# on whose editor saved the file last. Installed by `pnpm install` (prepare script).
+files=$(git diff --cached --name-only --diff-filter=ACMR | grep -E '\.(js|mjs|ts|astro|css|json|md|yaml|yml)$')
+[ -z "$files" ] && exit 0
+echo "$files" | xargs pnpm exec prettier --write --log-level warn
+echo "$files" | xargs git add

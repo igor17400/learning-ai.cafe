@@ -4,64 +4,125 @@ import Base from "../../layouts/Base.astro";
 import Mascot from "../../components/Mascot.astro";
 import { t, pathFor, locales } from "../../i18n";
 import { REPO } from "../../ledger";
+import { sources } from "../../covers";
 
 export function getStaticPaths() {
-  return locales.map((l) => ({ params: { locale: l === "en" ? undefined : l }, props: { locale: l } }));
+  return locales.map((l) => ({
+    params: { locale: l === "en" ? undefined : l },
+    props: { locale: l },
+  }));
 }
 const { locale } = Astro.props;
 // the cover emblems, one inline SVG component per file in src/covers
-const covers = import.meta.glob("../../covers/*.svg", { eager: true, import: "default" }) as Record<string, any>;
+const covers = import.meta.glob("../../covers/*.svg", {
+  eager: true,
+  import: "default",
+}) as Record<string, any>;
 const emblem = (name: string) => covers[`../../covers/${name}.svg`];
 
-const tutorials = (await getCollection("tutorials")).sort((a, b) => a.data.title.localeCompare(b.data.title));
-const existing = new Set((await getCollection("pages")).map((e) => e.id.toLowerCase()));
+const tutorials = (await getCollection("tutorials")).sort((a, b) =>
+  a.data.title.localeCompare(b.data.title),
+);
+const existing = new Set(
+  (await getCollection("pages")).map((e) => e.id.toLowerCase()),
+);
 const shelf = tutorials.map((tut) => {
   const slug = tut.id.split("/")[0];
-  const written = tut.data.pages.filter((p) => p.status === "written" && existing.has(`${slug}/pages/${p.slug}`));
-  return { tut, slug, written, href: written[0] ? pathFor(locale, `${slug}/${written[0].slug}/`) : null };
+  const written = tut.data.pages.filter(
+    (p) =>
+      p.status === "written" &&
+      existing.has(
+        `${slug}/pages/${tut.data.languages[0].toLowerCase()}/${p.slug}`,
+      ),
+  );
+  return {
+    tut,
+    slug,
+    written,
+    href: written[0] ? pathFor(locale, `${slug}/${written[0].slug}/`) : null,
+  };
 });
 const first = shelf.find((s) => s.href);
 ---
-<Base locale={locale} title="learning-ai.cafe" description={t(locale, "slogan") + " " + t(locale, "lede")}>
+
+<Base
+  locale={locale}
+  title="learning-ai.cafe"
+  description={t(locale, "slogan") + " " + t(locale, "lede")}
+>
   <main class="home wrap">
     <section class="hero">
       <h1>{t(locale, "slogan")}</h1>
       <p class="lede">{t(locale, "lede")}</p>
       <p class="ctas">
-        {first && <a class="cta" href={first.href}>{t(locale, "read")}</a>}
-        <a class="btn" href={REPO} target="_blank" rel="noopener">{t(locale, "contribute")}</a>
+        {first && (
+          <a class="cta" href={first.href}>
+            {t(locale, "read")}
+          </a>
+        )}
+        <a class="btn" href={REPO} target="_blank" rel="noopener">
+          {t(locale, "contribute")}
+        </a>
       </p>
     </section>
 
     <section class="shelf-section" aria-labelledby="shelf">
-      <h2 id="shelf" class="eyebrow">{t(locale, "shelf")}</h2>
+      <h2 id="shelf" class="eyebrow">
+        {t(locale, "shelf")}
+      </h2>
       <div class="shelf">
         {shelf.map(({ tut, written, href }) => {
           const Emblem = emblem(tut.data.cover);
           return (
-            <a class="cover" href={href || "#"} style={`--h:${tut.data.hue}`}>
-              <span class="book">
-                <span class="emblem"><Emblem /></span>
+            <div class="cover" style={`--h:${tut.data.hue}`}>
+              <a class="book" href={href || "#"}>
+                <span class="emblem">
+                  <Emblem />
+                </span>
                 <span class="title">{tut.data.title}</span>
                 <span class="sub">{tut.data.tagline}</span>
-              </span>
-            </a>
+              </a>
+              <a
+                class="info"
+                href={sources[tut.data.cover].url}
+                target="_blank"
+                rel="noopener"
+                title={`${t(locale, "crest_source")} (${sources[tut.data.cover].licence})`}
+                aria-label={t(locale, "crest_source")}
+              >
+                i
+              </a>
+            </div>
           );
         })}
-        <a class="cover wanted" href={`${REPO}/issues/new`} target="_blank" rel="noopener">
-          <span class="book">
-            <span class="emblem"><Mascot size={72} steam="still" /></span>
+        <div class="cover wanted">
+          <a
+            class="book"
+            href={`${REPO}/issues/new`}
+            target="_blank"
+            rel="noopener"
+          >
+            <span class="emblem">
+              <Mascot size={72} steam="still" />
+            </span>
             <span class="title">{t(locale, "foundations_t")}</span>
             <span class="sub">{t(locale, "foundations")}</span>
-          </span>
-        </a>
+          </a>
+        </div>
       </div>
     </section>
 
     <section class="open">
       <h2>{t(locale, "open_t")}</h2>
       <p>{t(locale, "open")}</p>
-      <a class="btn" href={REPO} target="_blank" rel="noopener">{t(locale, "contribute")}</a>
+      <p class="ctas">
+        <a class="btn" href={REPO} target="_blank" rel="noopener">
+          {t(locale, "contribute")}
+        </a>{" "}
+        <a class="btn" href={pathFor(locale, "leaderboard/")}>
+          {t(locale, "leaderboard")}
+        </a>
+      </p>
     </section>
   </main>
 
@@ -69,7 +130,12 @@ const first = shelf.find((s) => s.href);
     <div class="wrap">
       <Mascot size={28} steam="still" />
       <p>{t(locale, "footer")}</p>
-      <a class="btn" href={REPO} target="_blank" rel="noopener">{t(locale, "contribute")}</a>
+      <a class="btn" href={pathFor(locale, "leaderboard/")}>
+        {t(locale, "leaderboard")}
+      </a>
+      <a class="btn" href={REPO} target="_blank" rel="noopener">
+        {t(locale, "contribute")}
+      </a>
     </div>
   </footer>
 </Base>

@@ -9,7 +9,10 @@
     "preview": "astro preview",
     "check": "astro check",
     "dev:samples": "rm -rf node_modules/.astro && SAMPLES=1 astro dev",
-    "build:samples": "rm -rf node_modules/.astro && SAMPLES=1 astro build"
+    "build:samples": "rm -rf node_modules/.astro && SAMPLES=1 astro build",
+    "format": "prettier --write .",
+    "prepare": "git config core.hooksPath .githooks",
+    "check:tutorial": "node scripts/check-tutorial.mjs"
   },
   "dependencies": {
     "@astrojs/markdown-remark": "^7.3.1",
@@ -20,5 +23,11 @@
     "remark-math": "^6.0.0",
     "unist-util-visit": "^5.1.0"
   },
-  "packageManager": "pnpm@11.20.0"
+  "packageManager": "pnpm@11.20.0",
+  "devDependencies": {
+    "github-slugger": "^2.0.0",
+    "openai": "^7.20.0",
+    "prettier": "^3.9.8",
+    "prettier-plugin-astro": "^1.0.1"
+  }
 }

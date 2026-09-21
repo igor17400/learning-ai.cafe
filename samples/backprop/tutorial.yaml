@@ -7,5 +7,13 @@ cover: "griffin"
 hue: 200
 languages: ["en"]
 pages:
-  - {"slug": "chain_rule", "title": "The Chain Rule", "subtitle": "One derivative at a time."}
-  - {"slug": "computational_graph", "title": "The Computational Graph", "subtitle": "Forward values, backward gradients."}
+  - {
+      "slug": "chain_rule",
+      "title": "The Chain Rule",
+      "subtitle": "One derivative at a time.",
+    }
+  - {
+      "slug": "computational_graph",
+      "title": "The Computational Graph",
+      "subtitle": "Forward values, backward gradients.",
+    }

@@ -8,6 +8,20 @@ hue: 320
 languages: ["en"]
 requires: ["cafe/backprop"]
 pages:
-  - {"slug": "forward_process", "title": "The Forward Process", "subtitle": "Adding noise, one step at a time."}
-  - {"slug": "reverse_process", "title": "The Reverse Process", "subtitle": "Predicting the noise.", "status": "planned"}
-  - {"slug": "sampling", "title": "Sampling", "subtitle": "From noise to image.", "status": "planned"}
+  - {
+      "slug": "forward_process",
+      "title": "The Forward Process",
+      "subtitle": "Adding noise, one step at a time.",
+    }
+  - {
+      "slug": "reverse_process",
+      "title": "The Reverse Process",
+      "subtitle": "Predicting the noise.",
+      "status": "planned",
+    }
+  - {
+      "slug": "sampling",
+      "title": "Sampling",
+      "subtitle": "From noise to image.",
+      "status": "planned",
+    }

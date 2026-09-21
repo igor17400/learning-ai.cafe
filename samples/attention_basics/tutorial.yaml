@@ -7,7 +7,24 @@ cover: "phoenix"
 hue: 28
 languages: ["en", "pt-BR"]
 pages:
-  - {"slug": "intro", "title": "Why Attention?", "subtitle": "The fixed-vector bottleneck."}
-  - {"slug": "lookup", "title": "The Dictionary Analogy", "subtitle": "A soft lookup where every entry answers a little."}
-  - {"slug": "softmax", "title": "From Scores to Weights", "subtitle": "Softmax and the square root."}
-  - {"slug": "complexity", "title": "The Cost of Looking Everywhere", "subtitle": "Quadratic cost and the KV cache.", "status": "planned"}
+  - {
+      "slug": "intro",
+      "title": "Why Attention?",
+      "subtitle": "The fixed-vector bottleneck.",
+    }
+  - {
+      "slug": "lookup",
+      "title": "The Dictionary Analogy",
+      "subtitle": "A soft lookup where every entry answers a little.",
+    }
+  - {
+      "slug": "softmax",
+      "title": "From Scores to Weights",
+      "subtitle": "Softmax and the square root.",
+    }
+  - {
+      "slug": "complexity",
+      "title": "The Cost of Looking Everywhere",
+      "subtitle": "Quadratic cost and the KV cache.",
+      "status": "planned",
+    }

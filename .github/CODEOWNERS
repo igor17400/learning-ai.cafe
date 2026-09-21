@@ -1,0 +1,5 @@
+# Every change to a tutorial needs a review from one of these people before it
+# can merge (branch protection: "require review from code owners").
+tutorials/**  @igor17400
+samples/**    @igor17400
+src/**        @igor17400

@@ -39,7 +39,12 @@ function measure() {
       : 1;
   const local = spreads * perSpread();
   const wpp = Math.max(1, (chapters[chapter]?.words || 1) / local);
-  const est = (c, j) => (j === chapter ? local : c.words ? Math.max(1, Math.round(c.words / wpp)) : 0);
+  const est = (c, j) =>
+    j === chapter
+      ? local
+      : c.words
+        ? Math.max(1, Math.round(c.words / wpp))
+        : 0;
   offset = chapters.slice(0, chapter).reduce((n, c, j) => n + est(c, j), 0);
   total = chapters.reduce((n, c, j) => n + est(c, j), 0) || local;
 }
@@ -78,7 +83,9 @@ function show(i) {
     book.dataset.lp = String(first);
     book.dataset.rp = n > 1 && last > first ? String(last) : "";
   }
-  if (count) count.textContent = n > 1 ? `${first}–${last} / ${total}` : `${first} / ${total}`;
+  if (count)
+    count.textContent =
+      n > 1 ? `${first}–${last} / ${total}` : `${first} / ${total}`;
   if (bar) bar.style.width = ((last / total) * 100).toFixed(1) + "%";
   store.set("page." + location.pathname, String(spread));
 }
@@ -123,10 +130,15 @@ export function setReader(on) {
     requestAnimationFrame(() => {
       measure();
       if (root.dataset.book !== "closed")
-        show(location.hash ? spreadOf($(decodeURIComponent(location.hash))) : saved);
+        show(
+          location.hash
+            ? spreadOf($(decodeURIComponent(location.hash)))
+            : saved,
+        );
     });
     const settle = () => {
-      if (root.dataset.reader !== "on" || root.dataset.book === "closed") return;
+      if (root.dataset.reader !== "on" || root.dataset.book === "closed")
+        return;
       measure();
       show(spread);
     };
@@ -143,7 +155,14 @@ export function setReader(on) {
 function spreadOf(el) {
   if (!el) return spread;
   const s = stride();
-  return s > 0 ? Math.floor((el.getBoundingClientRect().left - article.getBoundingClientRect().left + article.scrollLeft) / s) : 0;
+  return s > 0
+    ? Math.floor(
+        (el.getBoundingClientRect().left -
+          article.getBoundingClientRect().left +
+          article.scrollLeft) /
+          s,
+      )
+    : 0;
 }
 if (article) {
   if (root.dataset.reader === "on") setReader(true);
@@ -159,13 +178,19 @@ if (article) {
   });
   // swipe on touch screens
   let x0 = null;
-  article.addEventListener("touchstart", (e) => (x0 = e.touches[0].clientX), { passive: true });
-  article.addEventListener("touchend", (e) => {
-    if (x0 === null || root.dataset.reader !== "on") return;
-    const dx = e.changedTouches[0].clientX - x0;
-    x0 = null;
-    if (Math.abs(dx) > 40) show(spread + (dx < 0 ? 1 : -1));
-  }, { passive: true });
+  article.addEventListener("touchstart", (e) => (x0 = e.touches[0].clientX), {
+    passive: true,
+  });
+  article.addEventListener(
+    "touchend",
+    (e) => {
+      if (x0 === null || root.dataset.reader !== "on") return;
+      const dx = e.changedTouches[0].clientX - x0;
+      x0 = null;
+      if (Math.abs(dx) > 40) show(spread + (dx < 0 ? 1 : -1));
+    },
+    { passive: true },
+  );
   document.addEventListener("click", (e) => {
     if (root.dataset.reader !== "on") return;
     if (root.dataset.book === "closed") {

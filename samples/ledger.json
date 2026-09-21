@@ -30,10 +30,7 @@
         "why-not-make-the-vector-bigger",
         "what-that-buys-and-what-it-hides"
       ],
-      "figures": [
-        "bottleneck",
-        "lookup"
-      ]
+      "figures": ["bottleneck", "lookup"]
     },
     {
       "page": "cafe/attention_basics/intro",
@@ -43,12 +40,8 @@
       "score": 3,
       "what": "Redraw the bottleneck figure",
       "pr": 4,
-      "sections": [
-        "one-vector-for-the-whole-sentence"
-      ],
-      "figures": [
-        "bottleneck"
-      ]
+      "sections": ["one-vector-for-the-whole-sentence"],
+      "figures": ["bottleneck"]
     },
     {
       "page": "cafe/attention_basics/intro",
@@ -58,12 +51,8 @@
       "score": 2,
       "what": "Check the RNN claim and tighten the second section",
       "pr": 6,
-      "sections": [
-        "why-not-make-the-vector-bigger"
-      ],
-      "figures_reviewed": [
-        "lookup"
-      ]
+      "sections": ["why-not-make-the-vector-bigger"],
+      "figures_reviewed": ["lookup"]
     },
     {
       "page": "cafe/attention_basics/lookup",
@@ -77,9 +66,7 @@
         "where-it-breaks",
         "let-every-key-answer-a-little"
       ],
-      "figures": [
-        "soft_dictionary"
-      ]
+      "figures": ["soft_dictionary"]
     },
     {
       "page": "cafe/attention_basics/lookup",
@@ -89,9 +76,7 @@
       "score": 3,
       "what": "Add the numeric table",
       "pr": 9,
-      "sections": [
-        "where-it-breaks"
-      ]
+      "sections": ["where-it-breaks"]
     },
     {
       "page": "cafe/attention_basics/softmax",
@@ -100,13 +85,8 @@
       "type": "page",
       "score": 8,
       "what": "Write From Scores to Weights",
-      "sections": [
-        "what-a-weight-has-to-be",
-        "analyzing-the-spread"
-      ],
-      "figures": [
-        "softmax_bars"
-      ]
+      "sections": ["what-a-weight-has-to-be", "analyzing-the-spread"],
+      "figures": ["softmax_bars"]
     },
     {
       "page": "cafe/backprop/chain_rule",
@@ -115,13 +95,8 @@
       "type": "page",
       "score": 8,
       "what": "Write The Chain Rule",
-      "sections": [
-        "nested-functions",
-        "local-derivatives"
-      ],
-      "figures": [
-        "chain"
-      ]
+      "sections": ["nested-functions", "local-derivatives"],
+      "figures": ["chain"]
     },
     {
       "page": "cafe/backprop/computational_graph",
@@ -130,13 +105,8 @@
       "type": "page",
       "score": 8,
       "what": "Write The Computational Graph",
-      "sections": [
-        "forward-pass",
-        "backward-pass"
-      ],
-      "figures": [
-        "graph"
-      ]
+      "sections": ["forward-pass", "backward-pass"],
+      "figures": ["graph"]
     },
     {
       "page": "cafe/backprop/computational_graph",
@@ -146,9 +116,7 @@
       "score": 2,
       "what": "Fix the sign in the backward pass",
       "pr": 11,
-      "sections": [
-        "backward-pass"
-      ]
+      "sections": ["backward-pass"]
     },
     {
       "page": "cafe/diffusion/forward_process",
@@ -157,13 +125,8 @@
       "type": "page",
       "score": 8,
       "what": "Write The Forward Process",
-      "sections": [
-        "a-markov-chain-of-noise",
-        "the-closed-form"
-      ],
-      "figures": [
-        "noising"
-      ]
+      "sections": ["a-markov-chain-of-noise", "the-closed-form"],
+      "figures": ["noising"]
     }
   ]
 }

@@ -28,7 +28,9 @@ export const GET: APIRoute = async () => {
           tut.data.languages
             .filter((l) =>
               pages.some(
-                (e) => e.id.toLowerCase() === `${slug}/pages/${p.slug}`,
+                (e) =>
+                  e.id.toLowerCase() ===
+                  `${slug}/pages/${l.toLowerCase()}/${p.slug}`,
               ),
             )
             .map((l) => [l, pathFor(l, `${slug}/${p.slug}/`)]),

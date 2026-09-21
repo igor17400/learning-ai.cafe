@@ -1,0 +1,34 @@
+# When a pull request merges, record it in ledger.json and push to main.
+# Needs a token allowed to push to the protected branch: a fine-grained PAT of an
+# admin stored as LEDGER_TOKEN (contents: write). Falls back to the workflow token,
+# which only works if main is not protected.
+name: ledger
+on:
+  pull_request:
+    types: [closed]
+permissions:
+  contents: write
+  pull-requests: read
+jobs:
+  append:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          token: ${{ secrets.LEDGER_TOKEN || github.token }}
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 24, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - run: node .github/scripts/ledger.mjs
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+      - run: |
+          git config user.name "ledger bot"
+          git config user.email "actions@github.com"
+          git add ledger.json
+          git diff --cached --quiet || git commit -m "ledger: PR #${{ github.event.pull_request.number }} by @${{ github.event.pull_request.user.login }}"
+          git push

@@ -4,7 +4,11 @@ import Base from "../../../layouts/Base.astro";
 import Mascot from "../../../components/Mascot.astro";
 import { t, pathFor, locales } from "../../../i18n";
 import { pageMeta, tutorialContributors } from "../../../ledger";
-const covers = import.meta.glob("../../../covers/*.svg", { eager: true, import: "default" }) as Record<string, any>;
+import { sources } from "../../../covers";
+const covers = import.meta.glob("../../../covers/*.svg", {
+  eager: true,
+  import: "default",
+}) as Record<string, any>;
 
 export async function getStaticPaths() {
   const tutorials = await getCollection("tutorials");
@@ -14,12 +18,26 @@ export async function getStaticPaths() {
     const slug = tut.id.split("/")[0];
     for (const locale of tut.data.languages) {
       for (const p of tut.data.pages) {
-        const def = pages.find((e) => e.id.toLowerCase() === `${slug}/pages/${p.slug}`);
+        const def = pages.find(
+          (e) =>
+            e.id.toLowerCase() ===
+            `${slug}/pages/${tut.data.languages[0].toLowerCase()}/${p.slug}`,
+        );
         if (!def) continue;
-        const tr = locale === tut.data.languages[0] ? def
-          : pages.find((e) => e.id.toLowerCase() === `${slug}/pages/${p.slug}.${locale.toLowerCase()}`);
+        const tr =
+          locale === tut.data.languages[0]
+            ? def
+            : pages.find(
+                (e) =>
+                  e.id.toLowerCase() ===
+                  `${slug}/pages/${locale.toLowerCase()}/${p.slug}`,
+              );
         paths.push({
-          params: { locale: locale === "en" ? undefined : locale, tutorial: slug, page: p.slug },
+          params: {
+            locale: locale === "en" ? undefined : locale,
+            tutorial: slug,
+            page: p.slug,
+          },
           props: { tut, slug, p, entry: tr || def, untranslated: !tr, locale },
         });
       }
@@ -35,118 +53,260 @@ const { Content, headings } = await render(entry);
 const pages = tut.data.pages;
 const i = pages.findIndex((q) => q.slug === p.slug);
 const href = (q: any, l = locale) => pathFor(l, `${slug}/${q.slug}/`);
-const written = (q: any) => q.status === "written" && existing.has(`${slug}/pages/${q.slug}`);
-const prev = i > 0 && written(pages[i - 1]) ? { href: href(pages[i - 1]), title: `${String(i).padStart(2, "0")} · ${pages[i - 1].title}` } : null;
-const next = i + 1 < pages.length && written(pages[i + 1]) ? { href: href(pages[i + 1]), title: `${String(i + 2).padStart(2, "0")} · ${pages[i + 1].title}` } : null;
+const written = (q: any) =>
+  q.status === "written" &&
+  existing.has(
+    `${slug}/pages/${tut.data.languages[0].toLowerCase()}/${q.slug}`,
+  );
+const prev =
+  i > 0 && written(pages[i - 1])
+    ? {
+        href: href(pages[i - 1]),
+        title: `${String(i).padStart(2, "0")} · ${pages[i - 1].title}`,
+      }
+    : null;
+const next =
+  i + 1 < pages.length && written(pages[i + 1])
+    ? {
+        href: href(pages[i + 1]),
+        title: `${String(i + 2).padStart(2, "0")} · ${pages[i + 1].title}`,
+      }
+    : null;
 const num = String(i + 1).padStart(2, "0");
 // word counts of every chapter, so book mode can number pages across the whole book
-const words = (q: any) => (allPages.find((e) => e.id.toLowerCase() === `${slug}/pages/${q.slug}`)?.body || "").split(/\s+/).length;
-const meta = { ...pageMeta(`${tut.data.id}/${p.slug}`), chapter: i, chapters: pages.map((q) => ({ slug: q.slug, words: written(q) ? words(q) : 0 })) };
+const words = (q: any) =>
+  (
+    allPages.find(
+      (e) =>
+        e.id.toLowerCase() ===
+        `${slug}/pages/${tut.data.languages[0].toLowerCase()}/${q.slug}`,
+    )?.body || ""
+  ).split(/\s+/).length;
+const meta = {
+  ...pageMeta(`${tut.data.id}/${p.slug}`),
+  chapter: i,
+  chapters: pages.map((q) => ({
+    slug: q.slug,
+    words: written(q) ? words(q) : 0,
+  })),
+};
 const credits = tutorialContributors(tut.data.id + "/");
 const title = entry.data.title || p.title;
 const subtitle = entry.data.subtitle || p.subtitle;
 const Emblem = covers[`../../../covers/${tut.data.cover}.svg`];
-const alternates = tut.data.languages.filter((l) => l !== locale).map((l) => ({ lang: l, href: href(p, l) }));
+const alternates = tut.data.languages
+  .filter((l) => l !== locale)
+  .map((l) => ({ lang: l, href: href(p, l) }));
 ---
-<Base locale={locale} title={`${title} | ${tut.data.title}`} description={subtitle} hue={tut.data.hue} crumb={`${tut.data.title} / ${num}`} alternates={alternates} page prev={prev} next={next}>
+
+<Base
+  locale={locale}
+  title={`${title} | ${tut.data.title}`}
+  description={subtitle}
+  hue={tut.data.hue}
+  crumb={`${tut.data.title} / ${num}`}
+  alternates={alternates}
+  page
+  prev={prev}
+  next={next}
+>
   <div class="tapzone left" aria-hidden="true"></div>
   <div class="tapzone right" aria-hidden="true"></div>
   <div class="layout">
     <aside class="rail">
-      <a class="rail-crest" href={pathFor(locale, "")} style={`--h:${tut.data.hue}`}><Emblem /></a>
+      <a
+        class="rail-crest"
+        href={pathFor(locale, "")}
+        style={`--h:${tut.data.hue}`}
+      >
+        <Emblem />
+      </a>
       <p class="eyebrow">{tut.data.title}</p>
       <ol>
         {pages.map((q, j) => (
-          <li class:list={[{ current: q.slug === p.slug, planned: !written(q) }]}>
+          <li
+            class:list={[{ current: q.slug === p.slug, planned: !written(q) }]}
+          >
             <span class="num">{String(j + 1).padStart(2, "0")}</span>
-            {written(q) ? <a href={href(q)}>{q.title}</a> : <span>{q.title}</span>}
+            {written(q) ? (
+              <a href={href(q)}>{q.title}</a>
+            ) : (
+              <span>{q.title}</span>
+            )}
             <span class:list={["status", { planned: !written(q) }]}></span>
           </li>
         ))}
       </ol>
     </aside>
 
-    <div class="bookwrap" data-lp="" data-rp=""><span class="spine" aria-hidden="true"></span>
-    {i === 0 && (
-      <button class="cover-page" style={`--h:${tut.data.hue}`} data-open-book aria-label={t(locale, "book")}>
-        <span class="emblem"><Emblem /></span>
-        <span class="title">{tut.data.title}</span>
-        <span class="sub">{tut.data.tagline}</span>
-      </button>
-    )}
-    <article class="page">
+    <div class="bookwrap" data-lp="" data-rp="">
+      <span class="spine" aria-hidden="true"></span>
       {i === 0 && (
-        <div class="credits-page">
-          <p class="eyebrow">{t(locale, "builtby")}</p>
-          <p class="title">{tut.data.title}</p>
-          <ol>
-            {credits.map((c) => (
-              <li style={`--h:${c.hue}`}>
-                <span class="chip">{c.handle.replace(/^@/, "").slice(0, 2).toUpperCase()}</span>
-                <span><b>{c.name || c.handle}</b> <span class="muted">{c.handle}</span></span>
-                <span class="muted">{Object.entries(c.types).map(([k, v]) => `${v} ${k}`).join(", ")}</span>
-              </li>
-            ))}
-          </ol>
-          <p class="muted small">{t(locale, "contrib_note")}</p>
-        </div>
+        <button
+          class="cover-page"
+          style={`--h:${tut.data.hue}`}
+          data-open-book
+          aria-label={t(locale, "book")}
+        >
+          <span class="emblem">
+            <Emblem />
+          </span>
+          <span class="title">{tut.data.title}</span>
+          <span class="sub">{tut.data.tagline}</span>
+        </button>
       )}
-      <header>
-        {untranslated && <p class="notice">{t(locale, "untranslated")}</p>}
-        <p class="eyebrow">{num} &middot; {tut.data.title}</p>
-        <h1>{title}</h1>
-        <p class="sub">{subtitle}</p>
-        <p class="byline" data-byline>
-          {entry.data.verified && <span class="verified" title={entry.data.verified}><b>&#10003;</b> {t(locale, "verified")}</span>}
+      {i === 0 && (
+        <a
+          class="cover-info"
+          href={sources[tut.data.cover].url}
+          target="_blank"
+          rel="noopener"
+          title={`${t(locale, "crest_source")} (${sources[tut.data.cover].licence})`}
+          aria-label={t(locale, "crest_source")}
+        >
+          i
+        </a>
+      )}
+      <article class="page">
+        {i === 0 && (
+          <div class="credits-page">
+            <p class="eyebrow">{t(locale, "builtby")}</p>
+            <p class="title">{tut.data.title}</p>
+            <ol>
+              {credits.map((c) => (
+                <li style={`--h:${c.hue}`}>
+                  <span class="chip">
+                    {c.handle.replace(/^@/, "").slice(0, 2).toUpperCase()}
+                  </span>
+                  <span>
+                    <b>{c.name || c.handle}</b>{" "}
+                    <span class="muted">{c.handle}</span>
+                  </span>
+                  <span class="muted">
+                    {Object.entries(c.types)
+                      .map(([k, v]) => `${v} ${k}`)
+                      .join(", ")}
+                  </span>
+                </li>
+              ))}
+            </ol>
+            <p class="muted small">{t(locale, "contrib_note")}</p>
+          </div>
+        )}
+        <header>
+          {untranslated && <p class="notice">{t(locale, "untranslated")}</p>}
+          <p class="eyebrow">
+            {num} &middot; {tut.data.title}
+          </p>
+          <h1>{title}</h1>
+          <p class="sub">{subtitle}</p>
+          <p class="byline" data-byline>
+            {entry.data.verified && (
+              <span class="verified" title={entry.data.verified}>
+                <b>&#10003;</b> {t(locale, "verified")}
+              </span>
+            )}
+          </p>
+        </header>
+
+        <Content />
+
+        {(prev || next) && (
+          <nav class="pager">
+            {prev && (
+              <a class="prev" href={prev.href} rel="prev">
+                {prev.title}
+              </a>
+            )}
+            {next && (
+              <a class="next" href={next.href} rel="next">
+                {next.title}
+              </a>
+            )}
+          </nav>
+        )}
+
+        <p class="credits" data-credits>
+          <Mascot size={20} steam="none" />
         </p>
-      </header>
-
-      <Content />
-
-      {(prev || next) && (
-        <nav class="pager">
-          {prev && <a class="prev" href={prev.href} rel="prev">{prev.title}</a>}
-          {next && <a class="next" href={next.href} rel="next">{next.title}</a>}
-        </nav>
-      )}
-
-      <p class="credits" data-credits><Mascot size={20} steam="none" /></p>
-    </article>
+      </article>
     </div>
 
     <aside class="rail right">
       <p class="eyebrow">{t(locale, "onthispage")}</p>
-      <ol>{headings.filter((h) => h.depth === 2).map((h) => <li><a href={`#${h.slug}`}>{h.text}</a></li>)}</ol>
+      <ol>
+        {headings
+          .filter((h) => h.depth === 2)
+          .map((h) => (
+            <li>
+              <a href={`#${h.slug}`}>{h.text}</a>
+            </li>
+          ))}
+      </ol>
     </aside>
   </div>
 
   <dialog class="modal toc" data-modal="toc">
-    <button class="close" data-close aria-label="Close">&times;</button>
-    <div class="toc-head" style={`--h:${tut.data.hue}`}><span class="emblem"><Emblem /></span><div><h3>{tut.data.title}</h3><p class="muted small">{tut.data.tagline}</p></div></div>
+    <button class="close" data-close aria-label="Close">
+      &times;
+    </button>
+    <div class="toc-head" style={`--h:${tut.data.hue}`}>
+      <span class="emblem">
+        <Emblem />
+      </span>
+      <div>
+        <h3>{tut.data.title}</h3>
+        <p class="muted small">{tut.data.tagline}</p>
+      </div>
+    </div>
     <ol class="chapters">
       {pages.map((q, j) => (
         <li class:list={[{ current: q.slug === p.slug, planned: !written(q) }]}>
           <span class="num">{String(j + 1).padStart(2, "0")}</span>
-          {written(q) ? <a href={href(q)}>{q.title}</a> : <span>{q.title}</span>}
+          {written(q) ? (
+            <a href={href(q)}>{q.title}</a>
+          ) : (
+            <span>{q.title}</span>
+          )}
           {q.slug === p.slug && (
-            <ol class="sections">{headings.filter((h) => h.depth === 2).map((h) => <li><a href={`#${h.slug}`} data-close>{h.text}</a></li>)}</ol>
+            <ol class="sections">
+              {headings
+                .filter((h) => h.depth === 2)
+                .map((h) => (
+                  <li>
+                    <a href={`#${h.slug}`} data-close>
+                      {h.text}
+                    </a>
+                  </li>
+                ))}
+            </ol>
           )}
         </li>
       ))}
     </ol>
   </dialog>
   <dialog class="modal wide" data-modal="contrib">
-    <button class="close" data-close aria-label="Close">&times;</button>
+    <button class="close" data-close aria-label="Close">
+      &times;
+    </button>
     <h3>{t(locale, "who")}</h3>
     <p class="muted small">{t(locale, "contrib_note")}</p>
     <div data-contrib-rows></div>
     <h4>{t(locale, "history")}</h4>
     <ol class="history" data-history></ol>
-    <a class="cta" href={`${meta.repo}/blob/main/CONTRIBUTING.md`}>{t(locale, "propose")}</a>
+    <a class="cta" href={`${meta.repo}/blob/main/CONTRIBUTING.md`}>
+      {t(locale, "propose")}
+    </a>
   </dialog>
   <dialog class="modal" data-modal="detail">
-    <button class="close" data-close aria-label="Close">&times;</button>
+    <button class="close" data-close aria-label="Close">
+      &times;
+    </button>
     <div data-detail></div>
   </dialog>
-  <script type="application/json" id="page-meta" set:html={JSON.stringify(meta)} />
+  <script
+    type="application/json"
+    id="page-meta"
+    set:html={JSON.stringify(meta)}
+  ></script>
 </Base>

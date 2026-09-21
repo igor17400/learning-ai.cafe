@@ -2,10 +2,26 @@
 // The cup. Drawn in currentColor so it takes the reader's accent. Three sizes
 // of steam: the middle curl is the heavy one, the attention weight that won.
 // `steam="live"` animates the steam (respects prefers-reduced-motion).
-interface Props { size?: number; steam?: "still" | "live" | "none" }
+interface Props {
+  size?: number;
+  steam?: "still" | "live" | "none";
+}
 const { size = 28, steam = "still" } = Astro.props;
 ---
-<svg class={`mascot steam-${steam}`} width={size} height={size} viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" role="img" aria-label="learning-ai.cafe">
+
+<svg
+  class={`mascot steam-${steam}`}
+  width={size}
+  height={size}
+  viewBox="0 0 40 40"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2.2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  role="img"
+  aria-label="learning-ai.cafe"
+>
   <title>learning-ai.cafe</title>
   <g class="steam">
     <path class="s1" d="M13.5 12.5c0-2.4 2-2.8 2-5" opacity="0.45" />
@@ -13,7 +29,11 @@ const { size = 28, steam = "still" } = Astro.props;
     <path class="s3" d="M25.5 12.5c0-2.4 2-2.8 2-5" opacity="0.45" />
   </g>
   <!-- cup body, slightly tapered, with a soft fill -->
-  <path d="M8 17h24l-1.6 10.4A6 6 0 0 1 24.5 32.5h-9A6 6 0 0 1 9.6 27.4z" fill="currentColor" fill-opacity="0.10" />
+  <path
+    d="M8 17h24l-1.6 10.4A6 6 0 0 1 24.5 32.5h-9A6 6 0 0 1 9.6 27.4z"
+    fill="currentColor"
+    fill-opacity="0.10"
+  />
   <!-- handle -->
   <path d="M32 19.5h2.2a3.6 3.6 0 0 1 0 7.2H30.6" />
   <!-- saucer -->

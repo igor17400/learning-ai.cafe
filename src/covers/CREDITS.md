@@ -1,6 +1,6 @@
 # Cover crests
 
-Heraldic charges from the Wikimedia Commons *Meuble héraldique* project, recoloured to ink on paper.
+Heraldic charges from the Wikimedia Commons _Meuble héraldique_ project, recoloured to ink on paper.
 
 - `lion.svg`: [Meuble héraldique Lion rampant ailé.svg](https://commons.wikimedia.org/wiki/File:Meuble_héraldique_Lion_rampant_ailé.svg), CC BY 4.0
 - `unicorn.svg`: [Meuble héraldique Licorne saillante.svg](https://commons.wikimedia.org/wiki/File:Meuble_héraldique_Licorne_saillante.svg), CC BY 4.0

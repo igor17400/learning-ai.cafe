@@ -2,14 +2,38 @@
 import "../styles/site.css";
 import Mascot from "../components/Mascot.astro";
 import { t, pathFor, locales } from "../i18n";
-interface Props { locale: string; title: string; description?: string; hue?: number; crumb?: string; alternates?: { lang: string; href: string }[]; page?: boolean; prev?: { href: string; title: string } | null; next?: { href: string; title: string } | null }
-const { locale, title, description = "", hue = 28, crumb = "", page = false, prev = null, next = null } = Astro.props;
+interface Props {
+  locale: string;
+  title: string;
+  description?: string;
+  hue?: number;
+  crumb?: string;
+  alternates?: { lang: string; href: string }[];
+  page?: boolean;
+  prev?: { href: string; title: string } | null;
+  next?: { href: string; title: string } | null;
+}
+const {
+  locale,
+  title,
+  description = "",
+  hue = 28,
+  crumb = "",
+  page = false,
+  prev = null,
+  next = null,
+} = Astro.props;
 const home = pathFor(locale, "");
 // pages that exist in every language (the home) get their alternates from the path
 const bare = Astro.url.pathname.replace(/^\/pt-BR\//, "/").slice(1);
-const alternates = Astro.props.alternates ?? locales.filter((l) => l !== locale).map((l) => ({ lang: l, href: pathFor(l, bare) }));
+const alternates =
+  Astro.props.alternates ??
+  locales
+    .filter((l) => l !== locale)
+    .map((l) => ({ lang: l, href: pathFor(l, bare) }));
 const canonical = new URL(Astro.url.pathname, Astro.site);
 ---
+
 <!doctype html>
 <html lang={locale} data-hue={hue}>
   <head>
@@ -25,45 +49,185 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <meta property="og:locale" content={locale.replace("-", "_")} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    {alternates.map((a) => <link rel="alternate" hreflang={a.lang} href={new URL(a.href, Astro.site)} />)}
-    <link rel="alternate" hreflang="x-default" href={new URL(pathFor("en", bare), Astro.site)} />
+    {alternates.map((a) => (
+      <link
+        rel="alternate"
+        hreflang={a.lang}
+        href={new URL(a.href, Astro.site)}
+      />
+    ))}
+    <link
+      rel="alternate"
+      hreflang="x-default"
+      href={new URL(pathFor("en", bare), Astro.site)}
+    />
     {next && <link rel="prefetch" href={next.href} />}
-    <link rel="preload" href="/fonts/inter.woff2" as="font" type="font/woff2" crossorigin />
-    <link rel="preload" href="/fonts/source-serif-4.woff2" as="font" type="font/woff2" crossorigin />
+    <link
+      rel="preload"
+      href="/fonts/inter.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="/fonts/source-serif-4.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     <script is:inline>
       // stored preferences before first paint, so nothing flashes
       try {
-        var d = document.documentElement, g = function (k) { return localStorage.getItem("cafe." + k); };
-        ["mode", "reader", "focus", "font"].forEach(function (k) { if (g(k)) d.dataset[k] = g(k); });
+        var d = document.documentElement,
+          g = function (k) {
+            return localStorage.getItem("cafe." + k);
+          };
+        ["mode", "reader", "focus", "font"].forEach(function (k) {
+          if (g(k)) d.dataset[k] = g(k);
+        });
         if (g("hue")) d.style.setProperty("--h", g("hue"));
         if (g("size")) d.style.setProperty("--fs", g("size") + "rem");
-        if (g("measure")) d.style.setProperty("--measure", g("measure") + "rem");
+        if (g("measure"))
+          d.style.setProperty("--measure", g("measure") + "rem");
       } catch (e) {}
     </script>
   </head>
   <body>
     <div class="topbar">
-      <a class="brand" href={home}><Mascot size={24} steam="none" /> <span>learning-ai.cafe</span></a>
+      <a class="brand" href={home}>
+        <Mascot size={24} steam="none" /> <span>learning-ai.cafe</span>
+      </a>
       {crumb && <span class="crumb">/ {crumb}</span>}
       <span class="spacer"></span>
-      {page && <span class="pagecount reader-only" data-pagecount aria-live="polite"></span>}
+      {page && (
+        <span
+          class="pagecount reader-only"
+          data-pagecount
+          aria-live="polite"
+        ></span>
+      )}
       {page && (
         <nav class="quicknav" aria-label="Pages">
-          {prev ? <a href={prev.href} title={prev.title} aria-label={t(locale, "previous")}>&larr;</a> : <span class="dim">&larr;</span>}
-          {next ? <a href={next.href} title={next.title} aria-label={t(locale, "next")}>&rarr;</a> : <span class="dim">&rarr;</span>}
+          {prev ? (
+            <a
+              href={prev.href}
+              title={prev.title}
+              aria-label={t(locale, "previous")}
+            >
+              &larr;
+            </a>
+          ) : (
+            <span class="dim">&larr;</span>
+          )}
+          {next ? (
+            <a
+              href={next.href}
+              title={next.title}
+              aria-label={t(locale, "next")}
+            >
+              &rarr;
+            </a>
+          ) : (
+            <span class="dim">&rarr;</span>
+          )}
         </nav>
       )}
-      {page && <button class="icon" data-open="toc" title={t(locale, "contents")} aria-label={t(locale, "contents")}>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 6h11M9 12h11M9 18h11"/><circle cx="4.5" cy="6" r="1.2" fill="currentColor" stroke="none"/><circle cx="4.5" cy="12" r="1.2" fill="currentColor" stroke="none"/><circle cx="4.5" cy="18" r="1.2" fill="currentColor" stroke="none"/></svg>
-      </button>}
-      {page && <button class="icon" data-toggle-focus title={t(locale, "focus")} aria-label={t(locale, "focus")}>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h10M4 17h13"/></svg>
-      </button>}
-      {page && <button class="icon" data-toggle-reader title={t(locale, "book")} aria-label={t(locale, "book")}>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"><path d="M3 5h7a2 2 0 0 1 2 2v13a2 2 0 0 0-2-2H3zM21 5h-7a2 2 0 0 0-2 2v13a2 2 0 0 1 2-2h7z"/></svg>
-      </button>}
-      <button class="icon" data-open="settings" title={t(locale, "settings")} aria-label={t(locale, "settings")}>
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="15" cy="6" r="2.4" fill="var(--bg)"/><circle cx="9" cy="12" r="2.4" fill="var(--bg)"/><circle cx="17" cy="18" r="2.4" fill="var(--bg)"/></svg>
+      {page && (
+        <button
+          class="icon"
+          data-open="toc"
+          title={t(locale, "contents")}
+          aria-label={t(locale, "contents")}
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <path d="M9 6h11M9 12h11M9 18h11" />
+            <circle cx="4.5" cy="6" r="1.2" fill="currentColor" stroke="none" />
+            <circle
+              cx="4.5"
+              cy="12"
+              r="1.2"
+              fill="currentColor"
+              stroke="none"
+            />
+            <circle
+              cx="4.5"
+              cy="18"
+              r="1.2"
+              fill="currentColor"
+              stroke="none"
+            />
+          </svg>
+        </button>
+      )}
+      {page && (
+        <button
+          class="icon"
+          data-toggle-focus
+          title={t(locale, "focus")}
+          aria-label={t(locale, "focus")}
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          >
+            <path d="M4 7h16M4 12h10M4 17h13" />
+          </svg>
+        </button>
+      )}
+      {page && (
+        <button
+          class="icon"
+          data-toggle-reader
+          title={t(locale, "book")}
+          aria-label={t(locale, "book")}
+        >
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linejoin="round"
+          >
+            <path d="M3 5h7a2 2 0 0 1 2 2v13a2 2 0 0 0-2-2H3zM21 5h-7a2 2 0 0 0-2 2v13a2 2 0 0 1 2-2h7z" />
+          </svg>
+        </button>
+      )}
+      <button
+        class="icon"
+        data-open="settings"
+        title={t(locale, "settings")}
+        aria-label={t(locale, "settings")}
+      >
+        <svg
+          width="18"
+          height="18"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+        >
+          <path d="M4 6h16M4 12h16M4 18h16" />
+          <circle cx="15" cy="6" r="2.4" fill="var(--bg)" />
+          <circle cx="9" cy="12" r="2.4" fill="var(--bg)" />
+          <circle cx="17" cy="18" r="2.4" fill="var(--bg)" />
+        </svg>
       </button>
       <div class="progress"></div>
     </div>
@@ -71,23 +235,61 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <slot />
 
     <dialog class="modal" data-modal="settings">
-      <button class="close" data-close aria-label="Close">&times;</button>
+      <button class="close" data-close aria-label="Close">
+        &times;
+      </button>
       <h3>{t(locale, "settings")}</h3>
-      <div class="setting"><span>{t(locale, "language")}</span><div class="seg">
-        <button data-set-lang="en" aria-pressed={locale === "en"}>EN</button>
-        <button data-set-lang="pt-BR" aria-pressed={locale === "pt-BR"}>PT</button></div></div>
-      <div class="setting"><span>{t(locale, "appearance")}</span><div class="seg">
-        <button data-set-mode="light">{t(locale, "light")}</button>
-        <button data-set-mode="sepia">{t(locale, "sepia")}</button>
-        <button data-set-mode="dark">{t(locale, "dark")}</button></div></div>
-      <div class="setting"><span>{t(locale, "hue")}</span><input type="range" min="0" max="360" data-hue-range /></div>
-      <div class="setting"><span>{t(locale, "font")}</span><div class="seg">
-        <button data-set-font="sans">Sans</button><button data-set-font="serif">Serif</button><button data-set-font="hand">{t(locale, "hand")}</button></div></div>
-      <div class="setting"><span>{t(locale, "textsize")}</span><input type="range" min="0.9" max="1.5" step="0.05" data-size-range /></div>
-      <div class="setting"><span>{t(locale, "width")}</span><input type="range" min="34" max="52" step="1" data-measure-range /></div>
-      {page && <div class="setting"><span>{t(locale, "book")}</span><div class="seg">
-        <button data-set-reader="off">{t(locale, "off")}</button><button data-set-reader="on">{t(locale, "on")}</button></div></div>}
-      <button class="btn block" data-reset-theme>{t(locale, "reset")}</button>
+      <div class="setting">
+        <span>{t(locale, "language")}</span>
+        <div class="seg">
+          <button data-set-lang="en" aria-pressed={locale === "en"}>
+            EN
+          </button>
+          <button data-set-lang="pt-BR" aria-pressed={locale === "pt-BR"}>
+            PT
+          </button>
+        </div>
+      </div>
+      <div class="setting">
+        <span>{t(locale, "appearance")}</span>
+        <div class="seg">
+          <button data-set-mode="light">{t(locale, "light")}</button>
+          <button data-set-mode="sepia">{t(locale, "sepia")}</button>
+          <button data-set-mode="dark">{t(locale, "dark")}</button>
+        </div>
+      </div>
+      <div class="setting">
+        <span>{t(locale, "hue")}</span>
+        <input type="range" min="0" max="360" data-hue-range />
+      </div>
+      <div class="setting">
+        <span>{t(locale, "font")}</span>
+        <div class="seg">
+          <button data-set-font="sans">Sans</button>
+          <button data-set-font="serif">Serif</button>
+          <button data-set-font="hand">{t(locale, "hand")}</button>
+        </div>
+      </div>
+      <div class="setting">
+        <span>{t(locale, "textsize")}</span>
+        <input type="range" min="0.9" max="1.5" step="0.05" data-size-range />
+      </div>
+      <div class="setting">
+        <span>{t(locale, "width")}</span>
+        <input type="range" min="34" max="52" step="1" data-measure-range />
+      </div>
+      {page && (
+        <div class="setting">
+          <span>{t(locale, "book")}</span>
+          <div class="seg">
+            <button data-set-reader="off">{t(locale, "off")}</button>
+            <button data-set-reader="on">{t(locale, "on")}</button>
+          </div>
+        </div>
+      )}
+      <button class="btn block" data-reset-theme>
+        {t(locale, "reset")}
+      </button>
     </dialog>
 
     <script src="../scripts/site.js"></script>

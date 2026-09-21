@@ -42,6 +42,14 @@ export default {
   lede: "A single, collaborative tutorial for every topic, guiding you from initial intuition to deep understanding. It functions as a collective teaching mind, where anyone can help clarify and perfect the shared knowledge.",
   read: "Start reading",
   contribute: "Contribute on GitHub",
+  crest_source: "Original crest and its author",
+  leaderboard: "Leaderboard",
+  lb_lede:
+    "Everyone who improved a page, what they did, and their share of reader support. Half of every contribution goes to the people who wrote the pages, split by these scores.",
+  lb_share: "share",
+  lb_points: "pts",
+  lb_none:
+    "No contributions recorded yet. The first merged pull request starts the board.",
   shelf: "The shelf",
   brewing: "brewing",
   coming_soon: "Coming soon",

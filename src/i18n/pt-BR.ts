@@ -44,6 +44,14 @@ export default {
   lede: "Para cada conceito, um tutorial colaborativo projetado para guiar você da intuição básica à compreensão avançada. É uma plataforma de ensino em comunidade, onde cada pessoa pode trazer sua visão para aperfeiçoar o material compartilhado.",
   read: "Começar a ler",
   contribute: "Contribuir no GitHub",
+  crest_source: "Brasão original e seu autor",
+  leaderboard: "Ranking",
+  lb_lede:
+    "Todas as pessoas que melhoraram uma página, o que fizeram e sua parte no apoio dos leitores. Metade de cada contribuição vai para quem escreveu as páginas, dividida por estas pontuações.",
+  lb_share: "parte",
+  lb_points: "pts",
+  lb_none:
+    "Nenhuma contribuição registrada ainda. O primeiro pull request aceito inicia o ranking.",
   shelf: "A estante",
   brewing: "no coador",
   coming_soon: "Em breve",

@@ -1,0 +1,161 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import { t, pathFor, locales } from "../../i18n";
+import { leaderboard, REPO } from "../../ledger";
+
+export function getStaticPaths() {
+  return locales.map((l) => ({
+    params: { locale: l === "en" ? undefined : l },
+    props: { locale: l },
+  }));
+}
+const { locale } = Astro.props;
+const { people, total, contributions } = leaderboard();
+const tutorials = await getCollection("tutorials");
+// "cafe/<slug>/<page>" -> link and title
+const pageInfo = (id: string) => {
+  const [ns, slug, page] = id.split("/");
+  const tut = tutorials.find((tt) => tt.data.id === `${ns}/${slug}`);
+  const p = tut?.data.pages.find((q) => q.slug === page);
+  return {
+    href: pathFor(locale, `${slug}/${page}/`),
+    title: p ? `${tut!.data.title} · ${p.title}` : id,
+  };
+};
+// the kite: one axis per contribution type, fixed order, scaled to the busiest axis on the board
+const TYPES = [
+  "page",
+  "fix",
+  "figure",
+  "worked-example",
+  "review",
+  "translation",
+];
+const axisMax = Math.max(
+  1,
+  ...people.flatMap((p) => TYPES.map((k) => p.types[k] || 0)),
+);
+const R = 44,
+  C = 60;
+const point = (i: number, v: number) => {
+  const a = -Math.PI / 2 + (i * 2 * Math.PI) / TYPES.length;
+  return [C + Math.cos(a) * R * v, C + Math.sin(a) * R * v] as const;
+};
+const kite = (types: Record<string, number>) =>
+  TYPES.map((k, i) => point(i, (types[k] || 0) / axisMax));
+const initials = (h: string) => h.replace(/^@/, "").slice(0, 2).toUpperCase();
+---
+
+<Base
+  locale={locale}
+  title={`${t(locale, "leaderboard")} | learning-ai.cafe`}
+  description={t(locale, "lb_lede")}
+  crumb={t(locale, "leaderboard")}
+>
+  <main class="wrap lb">
+    <header class="lb-head">
+      <h1>{t(locale, "leaderboard")}</h1>
+      <p class="lede">{t(locale, "lb_lede")}</p>
+      <p class="muted small">
+        {people.length} {t(locale, "contributors")} · {contributions}{" "}
+        {t(locale, "revisions")} · {total} {t(locale, "lb_points")}
+      </p>
+    </header>
+
+    {!people.length && <p class="notice">{t(locale, "lb_none")}</p>}
+
+    <ol class="board">
+      {people.map((p, rank) => (
+        <li class="person" style={`--h:${p.hue}`}>
+          <div class="who">
+            <span class="rank">{String(rank + 1).padStart(2, "0")}</span>
+            <span class="chip">{initials(p.handle)}</span>
+            <div>
+              <b>{p.name || p.handle}</b>
+              <a
+                class="muted"
+                href={`https://github.com/${p.github}`}
+                target="_blank"
+                rel="noopener"
+              >
+                {p.handle}
+              </a>
+            </div>
+            <div class="score">
+              <b>{p.score}</b>{" "}
+              <span class="muted">{t(locale, "lb_points")}</span>
+              <span class="share">
+                {Math.round((100 * p.score) / total)}% {t(locale, "lb_share")}
+              </span>
+            </div>
+          </div>
+
+          <figure
+            class="kite"
+            aria-label={TYPES.map((k) => `${k}: ${p.types[k] || 0}`).join(", ")}
+          >
+            <svg viewBox="0 0 120 120" role="img">
+              {TYPES.map((k, i) => {
+                const [x, y] = point(i, 1);
+                return <line x1={C} y1={C} x2={x} y2={y} />;
+              })}
+              <polygon
+                points={kite(p.types)
+                  .map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`)
+                  .join(" ")}
+              />
+              {kite(p.types).map(
+                ([x, y], i) =>
+                  (p.types[TYPES[i]] || 0) > 0 && (
+                    <circle cx={x} cy={y} r="3.5" />
+                  ),
+              )}
+            </svg>
+            <figcaption>
+              {TYPES.map((k, i) => {
+                const [x, y] = point(i, 1.32);
+                return (
+                  <span
+                    style={`left:${(100 * x) / 120}%;top:${(100 * y) / 120}%`}
+                    class:list={{ on: (p.types[k] || 0) > 0 }}
+                  >
+                    {p.types[k] ? `${p.types[k]} ` : ""}
+                    {k}
+                  </span>
+                );
+              })}
+            </figcaption>
+          </figure>
+
+          <ol class="did">
+            {p.entries.map((e) => {
+              const pi = pageInfo(e.page);
+              return (
+                <li>
+                  <time>{e.date}</time>
+                  <span>
+                    <a href={pi.href}>{pi.title}</a>: {e.what}{" "}
+                    <span class="muted">
+                      {e.type}, {e.score} {t(locale, "lb_points")}
+                    </span>
+                    {e.pr && (
+                      <a
+                        class="pr"
+                        href={`${REPO}/pull/${e.pr}`}
+                        target="_blank"
+                        rel="noopener"
+                      >
+                        #{e.pr}
+                      </a>
+                    )}
+                  </span>
+                </li>
+              );
+            })}
+          </ol>
+        </li>
+      ))}
+    </ol>
+  </main>
+</Base>

@@ -19,7 +19,7 @@ deleted pages keep being built.
 
 ```
 tutorials/<slug>/tutorial.yaml   the tutorial: title, tagline, hue, languages, prerequisites, page order
-tutorials/<slug>/pages/<page>.md the page body; <page>.pt-BR.md is its translation
+tutorials/<slug>/pages/<lang>/<page>.md   the page body, one folder per language (en, pt-BR)
 tutorials/<slug>/figures/*.svg   built figures (sources live in the private diagrams repo)
 ledger.json                      who did what, appended by CI from merged pull requests
 samples/                         three fake tutorials and a fake ledger, for looking at the design (SAMPLES=1)
@@ -28,22 +28,24 @@ src/scripts/                     site.js is the entry; prefs, book, contribution
 ```
 
 A page that is listed in `tutorial.yaml` but has no `.md` file is shown as planned.
-A translation that does not exist yet falls back to the default language with a notice.
+A page missing from a language folder falls back to the default language with a notice.
 
 ## Writing a page
 
 Plain Markdown, plus four conventions:
 
 ```markdown
-## A heading opens a section        chips, anchors and the on-page rail hang off it
-==the one highlighter==             use it once or twice per page
-$x$ inline, and                     display maths in a fence:
+## A heading opens a section chips, anchors and the on-page rail hang off it
+
+==the one highlighter== use it once or twice per page
+$x$ inline, and display maths in a fence:
+
 $$
 q \cdot k = \sum_i q_i k_i
 $$
 
-:::figure{#figure_name .narrow}     .narrow is optional
-![alt text that says what to see](../figures/figure_name.svg)
+:::figure{#figure_name .narrow} .narrow is optional
+![alt text that says what to see](../../figures/figure_name.svg)
 
 The caption. It states the takeaway, not the contents.
 :::

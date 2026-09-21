@@ -28,7 +28,15 @@ export default defineConfig({
     rehypePlugins: [
       rehypeHeadingIds,
       rehypeSections,
-      [rehypeMathjax, { chtml: { fontURL: "https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2" } }],
+      [
+        rehypeMathjax,
+        {
+          chtml: {
+            fontURL:
+              "https://cdn.jsdelivr.net/npm/mathjax@3/es5/output/chtml/fonts/woff-v2",
+          },
+        },
+      ],
     ],
     smartypants: false,
   },
