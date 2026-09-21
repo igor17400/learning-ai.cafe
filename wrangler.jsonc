@@ -1,0 +1,12 @@
+// Cloudflare Workers Static Assets: no Worker code, the build output in dist/ is
+// served directly. `pnpm build` produces it; `npx wrangler deploy` uploads it.
+{
+  "name": "learning-ai-cafe",
+  "compatibility_date": "2026-09-21",
+  "assets": {
+    "directory": "./dist",
+    // Astro is built with trailingSlash: "always", so /attention/intro/ maps to
+    // dist/attention/intro/index.html.
+    "html_handling": "auto-trailing-slash",
+  },
+}
