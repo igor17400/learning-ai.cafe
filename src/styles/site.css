@@ -48,6 +48,11 @@
   --ink-3: #9a8b7c;
   --rule: #e6dccf;
   --fig-bg: transparent;
+  --tint: 26% 48%;
+  /* the warm accent the hero pours, the one colour that is not the reader's */
+  --amber: 32 74% 48%;
+  /* the coffee is black whatever the reader's theme */
+  --coffee: #14100e;
   --sans: "Inter", system-ui, -apple-system, sans-serif;
   --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
   --mono: ui-monospace, SFMono-Regular, Menlo, monospace;
@@ -68,6 +73,9 @@
   --rule: #2a2529;
   --fig-bg: #fffdf8;
   --accent: hsl(var(--h) 55% 66%);
+  --tint: 32% 66%;
+  --amber: 34 82% 60%;
+  --coffee: #241d18;
 }
 [data-mode="sepia"] {
   --bg: #f4ecdc;
@@ -385,8 +393,100 @@ mjx-container {
   padding: 0 1.25rem;
 }
 .hero {
-  padding: 5rem 0 3.5rem;
-  max-width: 46rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(16rem, 22rem);
+  gap: 3rem;
+  align-items: center;
+  padding: 4rem 0 3.5rem;
+}
+.hero .brewing {
+  color: var(--accent);
+}
+.hero .brew {
+  width: 100%;
+  height: auto;
+}
+/* the hero drawing: each contributor gets their own tint of the reader's
+   accent for their sleeve; the coffee is black, the pours amber */
+.brew .sleeve,
+.brew .cuff,
+.brew .knob {
+  --c: hsl(calc(var(--h) + var(--dh, 0)) var(--tint));
+}
+.brew .sleeve {
+  fill: var(--c);
+  stroke: none;
+}
+.brew .cuff {
+  stroke: var(--c);
+  stroke-width: 2.4;
+}
+.brew .knob {
+  fill: var(--c);
+  stroke: none;
+}
+/* skin is opaque: a hand has to hide the handle it closes around */
+.brew .skin {
+  fill: var(--bg);
+}
+/* the hand is drawn at a finer weight than the vessels it holds */
+.brew .hand path {
+  fill: var(--bg);
+  stroke-width: 1.8;
+}
+.brew .shade,
+.brew .ground {
+  fill: currentColor;
+  fill-opacity: 0.16;
+  stroke: none;
+}
+.brew .ground {
+  fill-opacity: 0.07;
+}
+.brew .trail {
+  stroke: hsl(var(--amber));
+  stroke-width: 2.4;
+  stroke-dasharray: 0.1 6.5;
+  opacity: 0.9;
+}
+.brew .node {
+  fill: hsl(var(--amber));
+  stroke: none;
+}
+/* the pour is already coffee by the time it is liquid */
+.brew .liquid {
+  fill: var(--coffee);
+  stroke: none;
+}
+.brew .coffee {
+  fill: var(--coffee);
+  stroke: none;
+}
+.brew .glass {
+  fill: var(--bg);
+  stroke: none;
+}
+.brew .surface {
+  fill: color-mix(in srgb, var(--coffee) 85%, #fff);
+  stroke: none;
+}
+.brew .contour {
+  stroke: hsl(var(--amber));
+  stroke-width: 1.3;
+  opacity: 0.3;
+}
+.brew .ripple {
+  stroke: hsl(var(--amber));
+  stroke-width: 1.2;
+  opacity: 0.45;
+}
+.brew .signature {
+  font-family: "Caveat", cursive;
+  font-size: 30px;
+  text-anchor: middle;
+  fill: currentColor;
+  fill-opacity: 0.8;
+  stroke: none;
 }
 .hero h1 {
   font-family: var(--serif);
@@ -1764,7 +1864,13 @@ dialog.modal.toc {
     display: none;
   }
   .hero {
+    grid-template-columns: 1fr;
+    gap: 2rem;
     padding: 3rem 0 2.5rem;
+  }
+  .hero .brewing {
+    max-width: 18rem;
+    margin: 0 auto;
   }
   .shelf {
     grid-template-columns: repeat(2, 1fr);

@@ -52,6 +52,7 @@ export default {
   lb_points: "pts",
   lb_none:
     "Nenhuma contribuição registrada ainda. O primeiro pull request aceito inicia o ranking.",
+  pour: "conhecimento",
   shelf: "A estante",
   brewing: "no coador",
   coming_soon: "Em breve",

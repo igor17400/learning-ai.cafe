@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import Mascot from "../../components/Mascot.astro";
+import Brew from "../../components/Brew.astro";
 import { t, pathFor, locales } from "../../i18n";
 import { REPO } from "../../ledger";
 import { sources } from "../../covers";
@@ -52,18 +53,23 @@ const first = shelf.find((s) => s.href);
 >
   <main class="home wrap">
     <section class="hero">
-      <h1>{t(locale, "slogan")}</h1>
-      <p class="lede">{t(locale, "lede")}</p>
-      <p class="ctas">
-        {first && (
-          <a class="cta" href={first.href}>
-            {t(locale, "read")}
+      <div>
+        <h1>{t(locale, "slogan")}</h1>
+        <p class="lede">{t(locale, "lede")}</p>
+        <p class="ctas">
+          {first && (
+            <a class="cta" href={first.href}>
+              {t(locale, "read")}
+            </a>
+          )}
+          <a class="btn" href={REPO} target="_blank" rel="noopener">
+            {t(locale, "contribute")}
           </a>
-        )}
-        <a class="btn" href={REPO} target="_blank" rel="noopener">
-          {t(locale, "contribute")}
-        </a>
-      </p>
+        </p>
+      </div>
+      <div class="brewing" aria-hidden="true">
+        <Brew word={t(locale, "pour")} />
+      </div>
     </section>
 
     <section class="shelf-section" aria-labelledby="shelf">

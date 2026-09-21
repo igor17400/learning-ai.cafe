@@ -50,6 +50,7 @@ export default {
   lb_points: "pts",
   lb_none:
     "No contributions recorded yet. The first merged pull request starts the board.",
+  pour: "knowledge",
   shelf: "The shelf",
   brewing: "brewing",
   coming_soon: "Coming soon",

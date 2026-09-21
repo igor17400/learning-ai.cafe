@@ -1,0 +1,390 @@
+---
+// The hero illustration: three hands tip a different vessel — moka pot,
+// gooseneck kettle, French press — into one cup. What each pours leaves the
+// spout as a trail of data nodes and thickens into liquid as it falls, so the
+// streams read as knowledge condensing into coffee, signed by hand under the
+// saucer. Inline SVG, no animation.
+//
+// Every vessel is drawn with its spout tip at the local origin and its body
+// back to the left, so a stream starts exactly at the spout whatever the tilt;
+// `flip: -1` mirrors a vessel to pour leftwards.
+interface Props {
+  word: string;
+}
+const { word } = Astro.props;
+
+type Pt = [number, number];
+type Cubic = [Pt, Pt, Pt, Pt];
+
+const CUP = { x: 160, y: 200 };
+const S = 0.9;
+const f = (n: number) => n.toFixed(1);
+
+// ---------------------------------------------------------------- curves
+const at = (c: Cubic, t: number, i: 0 | 1) => {
+  const u = 1 - t;
+  return (
+    u * u * u * c[0][i] +
+    3 * u * u * t * c[1][i] +
+    3 * u * t * t * c[2][i] +
+    t * t * t * c[3][i]
+  );
+};
+const slope = (c: Cubic, t: number, i: 0 | 1) => {
+  const u = 1 - t;
+  return (
+    3 * u * u * (c[1][i] - c[0][i]) +
+    6 * u * t * (c[2][i] - c[1][i]) +
+    3 * t * t * (c[3][i] - c[2][i])
+  );
+};
+const pt = (c: Cubic, t: number): Pt => [at(c, t, 0), at(c, t, 1)];
+// the centreline itself, sampled between two parameters
+const poly = (c: Cubic, t0: number, t1: number, n = 12) =>
+  "M" +
+  Array.from({ length: n + 1 }, (_, k) => {
+    const [x, y] = pt(c, t0 + ((t1 - t0) * k) / n);
+    return `${f(x)} ${f(y)}`;
+  }).join("L");
+// a tapered tube around that centreline: both walls sampled off the normal, so
+// a gooseneck or a robot link keeps an even thickness however hard it turns
+const tube = (
+  c: Cubic,
+  t0: number,
+  t1: number,
+  w0: number,
+  w1: number,
+  n = 14,
+) => {
+  const left: string[] = [];
+  const right: string[] = [];
+  for (let k = 0; k <= n; k++) {
+    const t = t0 + ((t1 - t0) * k) / n;
+    const w = (w0 + ((w1 - w0) * k) / n) / 2;
+    const [dx, dy] = [slope(c, t, 0), slope(c, t, 1)];
+    const m = Math.hypot(dx, dy) || 1;
+    const [x, y] = pt(c, t);
+    left.push(`${f(x - (dy / m) * w)} ${f(y + (dx / m) * w)}`);
+    right.unshift(`${f(x + (dy / m) * w)} ${f(y - (dx / m) * w)}`);
+  }
+  return `M${left.join("L")}L${right.join("L")}z`;
+};
+
+// ---------------------------------------------------------------- vessels
+const gooseneck = tube(
+  [
+    [-20, 18],
+    [-16, -6],
+    [4, -20],
+    [0, 0],
+  ],
+  0,
+  1,
+  8,
+  4,
+);
+const vessels = {
+  // stovetop moka pot: two tapered sections, angular handle, hinged lid
+  moka: {
+    parts: [
+      "M-9-3 0 1-9 7z",
+      "M-31-4h22l-2 18h-18z",
+      "M-29 14h18l3 18a3 3 0 0 1-3 3h-18a3 3 0 0 1-3-3z",
+      "M-27-4v-7h14v7",
+      "M-31 0-50 9v13l19-7",
+    ],
+    body: "M-31-4h22l-2 18h2l3 18a3 3 0 0 1-3 3h-18a3 3 0 0 1-3-3l3-18h2z",
+    shade: -18,
+  },
+  // gooseneck kettle: dome body, long S-curved spout, loop handle on top
+  kettle: {
+    parts: [
+      gooseneck,
+      "M-58 2a10 10 0 0 1 10-10h12a10 10 0 0 1 10 10l2 18a12 12 0 0 1-12 14h-12a12 12 0 0 1-12-14z",
+      "M-50-8h16v-5h-16z",
+      "M-54-10C-56-36-24-36-26-10",
+      "M-48-10C-50-30-30-30-32-10",
+    ],
+    body: "M-58 2a10 10 0 0 1 10-10h12a10 10 0 0 1 10 10l2 18a12 12 0 0 1-12 14h-12a12 12 0 0 1-12-14z",
+    shade: -32,
+  },
+  // French press: glass cylinder, plunger through the lid, filter disc
+  press: {
+    parts: [
+      "M-8-6 0-2-8 2z",
+      "M-34-6h26v34a4 4 0 0 1-4 4h-18a4 4 0 0 1-4-4z",
+      "M-38-12h30v6h-30z",
+      "M-21-12v-7",
+      "M-34 2c-18 0-18 22 0 22v-5c-11 0-11-12 0-12z",
+    ],
+    body: "M-34-6h26v34a4 4 0 0 1-4 4h-18a4 4 0 0 1-4-4z",
+    shade: -18,
+  },
+};
+
+const people = [
+  // left: the moka pot, arm reaching in low from the left edge
+  {
+    kind: "moka" as const,
+    spout: [118, 108] as Pt,
+    flip: 1,
+    tilt: -18,
+    grip: [-47, 14] as Pt,
+    knob: [-20, -13] as Pt,
+    anchor: [-16, 198] as Pt,
+    bow: -5,
+    dh: -22,
+  },
+  // right: the French press, mirrored, arm from the right edge
+  {
+    kind: "press" as const,
+    spout: [202, 108] as Pt,
+    flip: -1,
+    tilt: -18,
+    grip: [-48, 13] as Pt,
+    knob: [-21, -23] as Pt,
+    anchor: [336, 172] as Pt,
+    bow: 4,
+    dh: 22,
+  },
+  // above: the kettle, arm dropping in from the top edge
+  {
+    kind: "kettle" as const,
+    spout: [156, 44] as Pt,
+    flip: 1,
+    tilt: -10,
+    grip: [-40, -32] as Pt,
+    knob: [-42, -16] as Pt,
+    anchor: [56, -18] as Pt,
+    bow: -3,
+    dh: 0,
+  },
+];
+// where a point of a vessel lands once it is scaled, tilted and mirrored
+const place = (p: (typeof people)[number], [lx, ly]: Pt): Pt => {
+  const r = (p.tilt * Math.PI) / 180;
+  const x = lx * S * Math.cos(r) - ly * S * Math.sin(r);
+  const y = lx * S * Math.sin(r) + ly * S * Math.cos(r);
+  return [p.spout[0] + p.flip * x, p.spout[1] + y];
+};
+// a run that leans sideways, so a forearm reaches in rather than ruling a line
+const bowed = (a: Pt, b: Pt, k: number): Cubic => {
+  const [dx, dy] = [b[0] - a[0], b[1] - a[1]];
+  const m = Math.hypot(dx, dy) || 1;
+  const [nx, ny] = [(-dy / m) * k, (dx / m) * k];
+  return [
+    a,
+    [a[0] + dx / 3 + nx, a[1] + dy / 3 + ny],
+    [a[0] + (dx * 2) / 3 + nx, a[1] + (dy * 2) / 3 + ny],
+    b,
+  ];
+};
+// the cuff: one stroke square across the sleeve where it ends
+const across = (c: Cubic, t: number, w: number) => {
+  const [dx, dy] = [slope(c, t, 0), slope(c, t, 1)];
+  const m = Math.hypot(dx, dy) || 1;
+  const [x, y] = pt(c, t);
+  return `M${f(x - (dy / m) * w)} ${f(y + (dx / m) * w)}L${f(x + (dy / m) * w)} ${f(y - (dx / m) * w)}`;
+};
+// the hand, drawn once in its own frame: the wrist sits at the origin and the
+// fingers close around a handle eight units along +x
+// a hand, drawn once in its own frame: the wrist sits at the origin, the back
+// of the hand runs along +x and four fingers curl over a handle eleven units
+// out, with the thumb laid across the top
+const HAND = {
+  palm: "M0-8h4a4.5 4.5 0 0 1 4.5 4.5v7A4.5 4.5 0 0 1 4 8H0z",
+  fingers: [
+    [-6, 4.6],
+    [-2, 5.4],
+    [2, 5],
+    [6, 4],
+  ].map(([y, len]) => `M8 ${y - 1.7}h${len}a1.7 1.7 0 0 1 0 3.4H8z`),
+  thumb: "M3-10h5.5a1.9 1.9 0 0 1 0 3.8H3z",
+};
+const arms = people.map((p) => {
+  const grip = place(p, p.grip);
+  const reach = Math.atan2(grip[1] - p.anchor[1], grip[0] - p.anchor[0]);
+  const wrist: Pt = [
+    grip[0] - Math.cos(reach) * 11,
+    grip[1] - Math.sin(reach) * 11,
+  ];
+  const c = bowed(p.anchor, wrist, p.bow);
+  return {
+    dh: p.dh,
+    fore: tube(c, 0, 1, 13, 9),
+    sleeve: tube(c, 0, 0.58, 13, 10.4),
+    cuff: across(c, 0.58, 5.2),
+    // a hand reaching leftwards is mirrored, not turned over: thumb stays up
+    hand: `translate(${f(wrist[0])} ${f(wrist[1])}) rotate(${f((reach * 180) / Math.PI)}) scale(1 ${Math.abs(reach) > Math.PI / 2 ? -1 : 1})`,
+  };
+});
+
+// ---------------------------------------------------------------- streams
+// each pour: data nodes near the spout, thickening into liquid at the cup
+const NODES = [0.1, 0.24, 0.38];
+const streams = (
+  [
+    [
+      [118, 108],
+      [128, 140],
+      [146, 152],
+      [152, 210],
+    ],
+    [
+      [202, 108],
+      [192, 140],
+      [174, 152],
+      [168, 210],
+    ],
+    [
+      [156, 44],
+      [161, 96],
+      [159, 146],
+      [160, 209],
+    ],
+  ] as Cubic[]
+).map((c) => ({
+  trail: poly(c, 0.04, 0.56),
+  liquid: tube(c, 0.5, 1, 2, 4.4),
+  nodes: NODES.map((t) => pt(c, t)),
+}));
+
+// ------------------------------------------------------------------- cup
+const CUP_D =
+  "M-36 0A36 6 0 0 0 36 0l-4.8 31.2A18 18 0 0 1 13.5 46.5h-27A18 18 0 0 1-31.2 31.2z";
+// the coffee read as a contour map: one wavelength throughout, the amplitude
+// falling with depth, so the surface looks lit and the bottom still
+const contours = [0, 1, 2, 3].map((i) => {
+  const y = 14 + i * 8;
+  const amp = 2.4 - i * 0.5;
+  return (
+    "M" +
+    Array.from({ length: 21 }, (_, k) => {
+      const x = -40 + k * 4;
+      return `${x} ${f(y + amp * Math.sin(((x + i * 5) / 26) * Math.PI * 2))}`;
+    }).join("L")
+  );
+});
+// 80% full: the surface sits nine units under the rim, where the cup has
+// already narrowed a little
+const LEVEL = { y: 9, rx: 34.6, ry: 5.7 };
+const ripples = [-9, 9];
+---
+
+<svg
+  class="brew"
+  viewBox="0 0 320 300"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2.2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+  role="img"
+  aria-label="Three hands pouring a moka pot, a kettle and a French press into one cup of knowledge"
+>
+  <title>Three contributors pouring into one cup</title>
+  <defs>
+    <clipPath id="brew-cup">
+      <path d={CUP_D} />
+    </clipPath>
+    {Object.entries(vessels).map(([k, v]) => (
+      <clipPath id={`brew-${k}`}>
+        <path d={v.body} />
+      </clipPath>
+    ))}
+  </defs>
+
+  <!-- arms: a sleeve in the contributor's tint, then bare forearm and hand -->
+  {arms.map((a) => (
+    <g style={`--dh:${a.dh}`}>
+      <path class="skin" d={a.fore} />
+      <path class="sleeve" d={a.sleeve} />
+      <path class="cuff" d={a.cuff} />
+    </g>
+  ))}
+
+  <!-- the vessels, each tipped over its own spout, shaded on the inner side -->
+  {people.map((p) => (
+    <g
+      transform={`translate(${p.spout[0]} ${p.spout[1]}) scale(${S * p.flip} ${S}) rotate(${p.tilt})`}
+      style={`--dh:${p.dh}`}
+    >
+      <path
+        d={vessels[p.kind].body}
+        fill="currentColor"
+        fill-opacity="0.07"
+        stroke="none"
+      />
+      <rect
+        class="shade"
+        clip-path={`url(#brew-${p.kind})`}
+        x={vessels[p.kind].shade}
+        y="-40"
+        width="10"
+        height="90"
+      />
+      {vessels[p.kind].parts.map((d) => (
+        <path d={d} />
+      ))}
+      <circle class="knob" cx={p.knob[0]} cy={p.knob[1]} r="2.8" />
+      {p.kind === "press" && <path d="M-32 14h22" opacity="0.45" />}
+    </g>
+  ))}
+
+  <!-- the hands, closing over the handle they hold -->
+  {arms.map((a) => (
+    <g class="hand" transform={a.hand}>
+      <path d={HAND.palm} />
+      {HAND.fingers.map((d) => (
+        <path d={d} />
+      ))}
+      <path d={HAND.thumb} transform="rotate(16 3 -8.1)" />
+    </g>
+  ))}
+
+  <!-- the empty cup, behind the pours: page-coloured, so it reads as glass -->
+  <g class="cup" transform={`translate(${CUP.x} ${CUP.y})`}>
+    <ellipse class="ground" cx="0" cy="58" rx="46" ry="4.5" />
+    <path class="glass" d={CUP_D} />
+    <ellipse class="glass" cx="0" cy="0" rx="36" ry="6" />
+  </g>
+
+  <!-- the pours: nodes and a dotted trail near the spout, liquid at the cup -->
+  {streams.map((s) => (
+    <g>
+      <path class="trail" d={s.trail} />
+      <path class="liquid" d={s.liquid} />
+      {s.nodes.map(([x, y], i) => (
+        <circle class="node" cx={f(x)} cy={f(y)} r={3 - i * 0.5} />
+      ))}
+    </g>
+  ))}
+
+  <!-- the coffee it is filled with, and the lip that stands in front of it -->
+  <g class="cup" transform={`translate(${CUP.x} ${CUP.y})`}>
+    <g clip-path="url(#brew-cup)">
+      <rect class="coffee" x="-40" y={LEVEL.y} width="80" height="52" />
+      <ellipse
+        class="surface"
+        cx="0"
+        cy={LEVEL.y}
+        rx={LEVEL.rx}
+        ry={LEVEL.ry}
+      />
+      {contours.map((d) => (
+        <path class="contour" d={d} />
+      ))}
+      {ripples.map((x) => (
+        <ellipse class="ripple" cx={x} cy={LEVEL.y} rx="7" ry="1.5" />
+      ))}
+      <rect class="shade" x="14" y="-8" width="30" height="64" />
+    </g>
+    <path d={CUP_D} />
+    <path d="M36 7.5h6.6a10.8 10.8 0 0 1 0 21.6H31.8" />
+    <ellipse cx="0" cy="0" rx="36" ry="6" />
+    <path d="M-43.5 57h87" opacity="0.5" />
+    <text class="signature" x="0" y="88">
+      {word}
+    </text>
+  </g>
+</svg>
