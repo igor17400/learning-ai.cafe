@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="200" viewBox="0 0 420 200" font-family="Inter, sans-serif">
+<rect x="1" y="1" width="418" height="198" rx="10" fill="hsl(28 50% 40% / 0.08)" stroke="hsl(28 45% 36%)" stroke-dasharray="6 4"/>
+<rect x="40" y="50" width="90" height="40" rx="6" fill="hsl(28 45% 36%)"/>
+<rect x="290" y="50" width="90" height="40" rx="6" fill="hsl(28 45% 36% / 0.35)"/>
+<path d="M130 70 H290" stroke="hsl(28 45% 36%)" stroke-width="3" marker-end="url(#a)"/>
+<defs><marker id="a" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="hsl(28 45% 36%)"/></marker></defs>
+<text x="210.0" y="160" text-anchor="middle" font-size="14" fill="#5a4d42">sample figure: softmax_bars</text>
+</svg>

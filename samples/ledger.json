@@ -1,0 +1,169 @@
+{
+  "_note": "Sample ledger used with `pnpm dev:samples`. Shape identical to ../ledger.json.",
+  "users": {
+    "@igor17400": {
+      "name": "Igor Lima",
+      "hue": 28,
+      "github": "igor17400"
+    },
+    "@ana-reviews": {
+      "name": "Ana Reviewer",
+      "hue": 200,
+      "github": "ana-reviews"
+    },
+    "@lee-draws": {
+      "name": "Lee Draws",
+      "hue": 120,
+      "github": "lee-draws"
+    }
+  },
+  "contributions": [
+    {
+      "page": "cafe/attention_basics/intro",
+      "date": "2026-09-01",
+      "by": "@igor17400",
+      "type": "page",
+      "score": 8,
+      "what": "Write Why Attention?",
+      "sections": [
+        "one-vector-for-the-whole-sentence",
+        "why-not-make-the-vector-bigger",
+        "what-that-buys-and-what-it-hides"
+      ],
+      "figures": [
+        "bottleneck",
+        "lookup"
+      ]
+    },
+    {
+      "page": "cafe/attention_basics/intro",
+      "date": "2026-09-10",
+      "by": "@lee-draws",
+      "type": "figure",
+      "score": 3,
+      "what": "Redraw the bottleneck figure",
+      "pr": 4,
+      "sections": [
+        "one-vector-for-the-whole-sentence"
+      ],
+      "figures": [
+        "bottleneck"
+      ]
+    },
+    {
+      "page": "cafe/attention_basics/intro",
+      "date": "2026-09-12",
+      "by": "@ana-reviews",
+      "type": "review",
+      "score": 2,
+      "what": "Check the RNN claim and tighten the second section",
+      "pr": 6,
+      "sections": [
+        "why-not-make-the-vector-bigger"
+      ],
+      "figures_reviewed": [
+        "lookup"
+      ]
+    },
+    {
+      "page": "cafe/attention_basics/lookup",
+      "date": "2026-09-02",
+      "by": "@igor17400",
+      "type": "page",
+      "score": 8,
+      "what": "Write The Dictionary Analogy",
+      "sections": [
+        "give-it-a-key-get-back-a-value",
+        "where-it-breaks",
+        "let-every-key-answer-a-little"
+      ],
+      "figures": [
+        "soft_dictionary"
+      ]
+    },
+    {
+      "page": "cafe/attention_basics/lookup",
+      "date": "2026-09-14",
+      "by": "@ana-reviews",
+      "type": "worked-example",
+      "score": 3,
+      "what": "Add the numeric table",
+      "pr": 9,
+      "sections": [
+        "where-it-breaks"
+      ]
+    },
+    {
+      "page": "cafe/attention_basics/softmax",
+      "date": "2026-09-03",
+      "by": "@igor17400",
+      "type": "page",
+      "score": 8,
+      "what": "Write From Scores to Weights",
+      "sections": [
+        "what-a-weight-has-to-be",
+        "analyzing-the-spread"
+      ],
+      "figures": [
+        "softmax_bars"
+      ]
+    },
+    {
+      "page": "cafe/backprop/chain_rule",
+      "date": "2026-09-05",
+      "by": "@ana-reviews",
+      "type": "page",
+      "score": 8,
+      "what": "Write The Chain Rule",
+      "sections": [
+        "nested-functions",
+        "local-derivatives"
+      ],
+      "figures": [
+        "chain"
+      ]
+    },
+    {
+      "page": "cafe/backprop/computational_graph",
+      "date": "2026-09-06",
+      "by": "@ana-reviews",
+      "type": "page",
+      "score": 8,
+      "what": "Write The Computational Graph",
+      "sections": [
+        "forward-pass",
+        "backward-pass"
+      ],
+      "figures": [
+        "graph"
+      ]
+    },
+    {
+      "page": "cafe/backprop/computational_graph",
+      "date": "2026-09-15",
+      "by": "@igor17400",
+      "type": "fix",
+      "score": 2,
+      "what": "Fix the sign in the backward pass",
+      "pr": 11,
+      "sections": [
+        "backward-pass"
+      ]
+    },
+    {
+      "page": "cafe/diffusion/forward_process",
+      "date": "2026-09-08",
+      "by": "@lee-draws",
+      "type": "page",
+      "score": 8,
+      "what": "Write The Forward Process",
+      "sections": [
+        "a-markov-chain-of-noise",
+        "the-closed-form"
+      ],
+      "figures": [
+        "noising"
+      ]
+    }
+  ]
+}

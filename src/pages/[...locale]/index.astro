@@ -1,0 +1,75 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import Mascot from "../../components/Mascot.astro";
+import { t, pathFor, locales } from "../../i18n";
+import { REPO } from "../../ledger";
+
+export function getStaticPaths() {
+  return locales.map((l) => ({ params: { locale: l === "en" ? undefined : l }, props: { locale: l } }));
+}
+const { locale } = Astro.props;
+// the cover emblems, one inline SVG component per file in src/covers
+const covers = import.meta.glob("../../covers/*.svg", { eager: true, import: "default" }) as Record<string, any>;
+const emblem = (name: string) => covers[`../../covers/${name}.svg`];
+
+const tutorials = (await getCollection("tutorials")).sort((a, b) => a.data.title.localeCompare(b.data.title));
+const existing = new Set((await getCollection("pages")).map((e) => e.id.toLowerCase()));
+const shelf = tutorials.map((tut) => {
+  const slug = tut.id.split("/")[0];
+  const written = tut.data.pages.filter((p) => p.status === "written" && existing.has(`${slug}/pages/${p.slug}`));
+  return { tut, slug, written, href: written[0] ? pathFor(locale, `${slug}/${written[0].slug}/`) : null };
+});
+const first = shelf.find((s) => s.href);
+---
+<Base locale={locale} title="learning-ai.cafe" description={t(locale, "slogan") + " " + t(locale, "lede")}>
+  <main class="home wrap">
+    <section class="hero">
+      <h1>{t(locale, "slogan")}</h1>
+      <p class="lede">{t(locale, "lede")}</p>
+      <p class="ctas">
+        {first && <a class="cta" href={first.href}>{t(locale, "read")}</a>}
+        <a class="btn" href={REPO} target="_blank" rel="noopener">{t(locale, "contribute")}</a>
+      </p>
+    </section>
+
+    <section class="shelf-section" aria-labelledby="shelf">
+      <h2 id="shelf" class="eyebrow">{t(locale, "shelf")}</h2>
+      <div class="shelf">
+        {shelf.map(({ tut, written, href }) => {
+          const Emblem = emblem(tut.data.cover);
+          return (
+            <a class="cover" href={href || "#"} style={`--h:${tut.data.hue}`}>
+              <span class="book">
+                <span class="emblem"><Emblem /></span>
+                <span class="title">{tut.data.title}</span>
+                <span class="sub">{tut.data.tagline}</span>
+              </span>
+            </a>
+          );
+        })}
+        <a class="cover wanted" href={`${REPO}/issues/new`} target="_blank" rel="noopener">
+          <span class="book">
+            <span class="emblem"><Mascot size={72} steam="still" /></span>
+            <span class="title">{t(locale, "foundations_t")}</span>
+            <span class="sub">{t(locale, "foundations")}</span>
+          </span>
+        </a>
+      </div>
+    </section>
+
+    <section class="open">
+      <h2>{t(locale, "open_t")}</h2>
+      <p>{t(locale, "open")}</p>
+      <a class="btn" href={REPO} target="_blank" rel="noopener">{t(locale, "contribute")}</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <Mascot size={28} steam="still" />
+      <p>{t(locale, "footer")}</p>
+      <a class="btn" href={REPO} target="_blank" rel="noopener">{t(locale, "contribute")}</a>
+    </div>
+  </footer>
+</Base>
