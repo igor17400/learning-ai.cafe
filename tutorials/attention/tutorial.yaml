@@ -1,0 +1,76 @@
+schema: 1
+id: "cafe/attention"
+title: "Attention"
+track: "Attention"
+tagline: "Is it really all we need? The routing mechanism that helps the model to focus."
+cover: "phoenix"
+hue: 301
+languages: ["en"]
+requires: []
+related: []
+pages:
+  - {
+      "slug": "intro",
+      "title": "Why Attention?",
+      "subtitle": "The fixed-vector bottleneck, and the idea of letting a model look things up instead of memorising.",
+    }
+  - {
+      "slug": "dictionary_analogy",
+      "title": "The Dictionary Analogy",
+      "subtitle": "Queries, keys, and values: a soft lookup where every entry is allowed to answer a little.",
+      "status": "planned",
+    }
+  - {
+      "slug": "similarity",
+      "title": "Measuring Similarity",
+      "subtitle": "Dot products, projections, and what it means for a key to match a query.",
+      "status": "planned",
+    }
+  - {
+      "slug": "softmax_weights",
+      "title": "From Scores to Weights",
+      "subtitle": "Softmax, sharpness, and why the scores are divided by the square root of the key dimension.",
+      "status": "planned",
+    }
+  - {
+      "slug": "scaled_dot_product",
+      "title": "Scaled Dot-Product Attention",
+      "subtitle": "The full formula read as a pipeline of three matrix multiplications.",
+      "status": "planned",
+    }
+  - {
+      "slug": "self_attention",
+      "title": "Self-Attention",
+      "subtitle": "When the queries, the keys, and the values are all learned projections of the same sequence.",
+      "status": "planned",
+    }
+  - {
+      "slug": "multi_head",
+      "title": "Multi-Head Attention",
+      "subtitle": "Many lookups in parallel, so different heads can ask different questions of the same context.",
+      "status": "planned",
+    }
+  - {
+      "slug": "masking",
+      "title": "Masking and Causality",
+      "subtitle": "Padding masks, causal masks, and how a query is forbidden from reading the future.",
+      "status": "planned",
+    }
+  - {
+      "slug": "positional",
+      "title": "Positional Information",
+      "subtitle": "Attention cannot see order on its own: sinusoidal encodings, learned embeddings, rotary positions.",
+      "status": "planned",
+    }
+  - {
+      "slug": "transformer_block",
+      "title": "The Transformer Block",
+      "subtitle": "The residual stream, layer normalisation, and the feed-forward layer that surrounds attention.",
+      "status": "planned",
+    }
+  - {
+      "slug": "complexity",
+      "title": "The Cost of Looking Everywhere",
+      "subtitle": "Quadratic complexity, the KV cache, and what linear and flash attention really change.",
+      "status": "planned",
+    }

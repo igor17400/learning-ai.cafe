@@ -872,6 +872,9 @@ figure {
   text-align: center;
 }
 figure img {
+  /* SVGs carry a viewBox and no width/height, so their intrinsic size is the
+     drawing's own points; without this they render small inside the measure. */
+  width: 100%;
   max-width: 100%;
   height: auto;
   background: var(--fig-bg);
