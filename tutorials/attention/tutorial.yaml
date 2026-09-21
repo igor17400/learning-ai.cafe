@@ -18,7 +18,6 @@ pages:
       "slug": "dictionary_analogy",
       "title": "The Dictionary Analogy",
       "subtitle": "Queries, keys, and values: a soft lookup where every entry is allowed to answer a little.",
-      "status": "planned",
     }
   - {
       "slug": "similarity",
