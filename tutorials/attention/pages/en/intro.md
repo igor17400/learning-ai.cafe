@@ -7,7 +7,7 @@ subtitle: "The fixed-vector bottleneck, and the idea of letting a model look thi
 
 Consider a model that reads a sentence and has to answer a question about it. Before attention, the standard recipe was a recurrent network that walks the sentence one word at a time, carrying a single hidden state that it updates at every step. By the time the model reaches the full stop, ==everything it knows about the sentence has to fit inside that one vector==. It is the same size whether the sentence has five words or five hundred.
 
-Call the width of that state $d$. The recurrent network reads word by word and rewrites $h$ in place, so $h$ after the last word is the model's entire record of what it read. Nothing else survives the walk.
+Call that state $h$ and its width $d$. The recurrent network reads word by word and rewrites $h$ in place, so $h$ after the last word is the model's entire record of what it read. Nothing else survives the walk.
 
 :::figure{#bottleneck_rnn}
 ![A five-word sentence and a five-hundred-word sentence both entering the same recurrent network and leaving as a state vector of identical height.](../../figures/bottleneck_rnn.svg)
@@ -28,7 +28,7 @@ Now go the other way. Refuse to compress at all. Keep one vector per word, which
 :::figure{#lookup_not_memorise}
 ![A request entering from the left, each of the five words answering with an arrow of a different width, and the widest arrows dominating the single answer vector on the right.](../../figures/lookup_not_memorise.svg)
 
-Every word reports how well it answers the request, and the scores decide how much of each word ends up in the answer. The five scores sum to one, so the answer is a blend of the sentence rather than a summary written before the request arrived. Wider arrows are stronger weights.
+Every word reports how well it answers the request, and the scores decide how much of each word ends up in the answer. The five scores are normalised to sum to one, so the answer is a blend of the sentence rather than a summary written before the request arrived. Wider arrows are stronger weights.
 :::
 
 ## What that buys, and what it hides
