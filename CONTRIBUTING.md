@@ -13,8 +13,9 @@ four Markdown conventions. Run `pnpm dev` and check the page before opening the 
 
 1. CI builds the site. A page that breaks the schema, a missing figure, or bad front
    matter fails here.
-2. A review agent reads the diff and posts a comment: does the change follow the
-   conventions, do the numbers add up, is anything unclear. It never merges.
+2. When a maintainer adds the `review:agent` label, a review agent reads the diff
+   and posts a comment: does the change follow the conventions, do the numbers
+   add up, is anything unclear. It never merges, and it only runs when asked.
 3. A code owner reviews and approves. Before merging they label the PR:
    - `type:page`, `type:fix`, `type:figure`, `type:worked-example`, `type:review`,
      `type:translation` (guessed from the diff when missing)

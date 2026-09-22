@@ -83,7 +83,11 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
           g = function (k) {
             return localStorage.getItem("cafe." + k);
           };
+        // book mode needs two columns side by side; a phone has room for
+        // neither, so the stored choice is ignored below the layout breakpoint
+        var narrow = window.matchMedia("(max-width: 800px)").matches;
         ["mode", "reader", "focus", "font"].forEach(function (k) {
+          if (k === "reader" && narrow) return;
           if (g(k)) d.dataset[k] = g(k);
         });
         if (g("hue")) d.style.setProperty("--h", g("hue"));
@@ -279,7 +283,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
         <input type="range" min="34" max="52" step="1" data-measure-range />
       </div>
       {page && (
-        <div class="setting">
+        <div class="setting" data-book-setting>
           <span>{t(locale, "book")}</span>
           <div class="seg">
             <button data-set-reader="off">{t(locale, "off")}</button>

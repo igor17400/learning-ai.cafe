@@ -1,5 +1,5 @@
-# Every pull request: the site must build, and the review agent reads tutorial
-# changes and leaves a comment. Neither step merges anything; a code owner does.
+# Every pull request: the site must build. The review agent is separate
+# (review.yml) and runs only when a maintainer asks for it.
 name: validate
 on:
   pull_request:
@@ -17,20 +17,3 @@ jobs:
         with: { node-version: 24, cache: pnpm }
       - run: pnpm install --frozen-lockfile
       - run: pnpm build
-  review:
-    runs-on: ubuntu-latest
-    needs: build
-    if: ${{ github.event.pull_request.head.repo.full_name == github.repository || vars.REVIEW_FORKS == 'true' }}
-    steps:
-      - uses: actions/checkout@v4
-      - uses: pnpm/action-setup@v4
-      - uses: actions/setup-node@v4
-        with: { node-version: 24, cache: pnpm }
-      - run: pnpm install --frozen-lockfile
-      - run: node .github/scripts/review.mjs
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          REVIEW_MODEL: ${{ vars.REVIEW_MODEL }}
-          GH_TOKEN: ${{ github.token }}
-          PR: ${{ github.event.pull_request.number }}
-          REPO: ${{ github.repository }}

@@ -165,7 +165,13 @@ function spreadOf(el) {
     : 0;
 }
 if (article) {
-  if (root.dataset.reader === "on") setReader(true);
+  // a window narrowed past the layout breakpoint loses book mode, and its
+  // toggle with it, so it is turned off rather than left on with no way out
+  const narrow = window.matchMedia("(max-width: 800px)");
+  narrow.addEventListener("change", (e) => {
+    if (e.matches && root.dataset.reader === "on") setReader(false);
+  });
+  if (root.dataset.reader === "on" && !narrow.matches) setReader(true);
   // in-page anchors (contents modal, links in the text) turn to the right spread
   document.addEventListener("click", (e) => {
     const a = e.target.closest('a[href^="#"]');

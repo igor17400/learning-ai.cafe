@@ -1,0 +1,32 @@
+# The review agent, on demand: a maintainer adds the "review:agent" label to a
+# pull request, the agent reads the tutorial diff and comments, the label is
+# removed so it can be added again for another pass. Only people with write
+# access can label, so nobody else can spend tokens.
+name: review
+on:
+  pull_request:
+    types: [labeled]
+permissions:
+  contents: read
+  pull-requests: write
+jobs:
+  agent:
+    if: github.event.label.name == 'review:agent'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 24, cache: pnpm }
+      - run: pnpm install --frozen-lockfile
+      - run: node .github/scripts/review.mjs
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          REVIEW_MODEL: ${{ vars.REVIEW_MODEL }}
+          GH_TOKEN: ${{ github.token }}
+          PR: ${{ github.event.pull_request.number }}
+          REPO: ${{ github.repository }}
+      - if: always()
+        run: gh pr edit ${{ github.event.pull_request.number }} --repo ${{ github.repository }} --remove-label review:agent
+        env:
+          GH_TOKEN: ${{ github.token }}
