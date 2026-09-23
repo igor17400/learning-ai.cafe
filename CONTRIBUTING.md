@@ -20,6 +20,9 @@ four Markdown conventions. Run `pnpm dev` and check the page before opening the 
    - `type:page`, `type:fix`, `type:figure`, `type:worked-example`, `type:review`,
      `type:translation` (guessed from the diff when missing)
    - `score:N` when the default score is wrong
+   - a label applies to every file in the pull request, so label only when all
+     the files are the same kind of change; otherwise leave it and the type is
+     guessed per file (new page, translation, figure, or fix by size)
 4. On merge, CI appends an entry to `ledger.json` for each page touched: who, when,
    what, which sections, which figures. The site rebuilds and the credit appears.
 

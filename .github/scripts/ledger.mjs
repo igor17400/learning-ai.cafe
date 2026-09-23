@@ -40,6 +40,14 @@ export function addedLines(patch = "") {
   return lines;
 }
 
+// Every section id of a page, in order.
+export function allSections(markdown) {
+  const slugger = new GithubSlugger();
+  return [...markdown.matchAll(/^## (.+)$/gm)].map((m) =>
+    headingId(m[1], slugger),
+  );
+}
+
 // Which sections (## headings) the given new-file lines fall under.
 export function sectionsTouched(markdown, lines) {
   const heads = [];
@@ -137,10 +145,13 @@ export function entriesFor(files, pr, read) {
       };
       if (lang) entry.lang = lang;
       const body = read(p.filename);
-      const sections =
-        body && p.status !== "added"
-          ? sectionsTouched(body, addedLines(p.patch))
-          : [];
+      // a new chapter credits every section to its author; an edit credits
+      // the sections its hunks fall in
+      const sections = !body
+        ? []
+        : p.status === "added"
+          ? allSections(body)
+          : sectionsTouched(body, addedLines(p.patch));
       if (sections.length) entry.sections = sections;
       if (t.figures.length) entry.figures = t.figures;
       out.push(entry);
@@ -255,6 +266,25 @@ function selfTest() {
     tr.type === "translation" && tr.lang === "pt-BR" && tr.score === 5,
     tr,
   );
+  const [added] = entriesFor(
+    [
+      {
+        filename: "tutorials/attn/pages/en/self_attention.md",
+        status: "added",
+        additions: 20,
+        patch: "",
+      },
+    ],
+    {
+      number: 9,
+      login: "ana",
+      date: "2026-09-23",
+      title: "Write self-attention",
+      labels: [],
+    },
+    read,
+  );
+  console.assert(added.type === "page" && added.sections.length === 2, added);
   console.log("self-test ok");
 }
 
