@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 322" font-family="Inter, system-ui, sans-serif">
+<text x="380" y="314" text-anchor="middle" font-size="12" fill="#5a4d42">bar length = how much of that entry's value reaches the answer</text>
+<line x1="380" y1="20" x2="380" y2="286" stroke="#e6dccf" stroke-width="1.4"/>
+<text x="198" y="30" text-anchor="middle" font-size="18" font-weight="600" fill="#221a14">Exact lookup</text>
+<text x="198" y="52" text-anchor="middle" font-size="13" fill="#5a4d42">one key answers, the rest return nothing</text>
+<rect x="36" y="70" width="104" height="36" rx="8" fill="#eed3ee" stroke="#853284" stroke-width="1.2" opacity="0.9"/>
+<text x="88" y="93" text-anchor="middle" font-size="14" fill="#221a14">cat</text>
+<rect x="160" y="79" width="160" height="18" rx="4" fill="none" stroke="#e6dccf" stroke-width="1.4"/>
+<text x="360" y="93" text-anchor="end" font-size="13" fill="#5a4d42" font-weight="400">0.00</text>
+<rect x="36" y="122" width="104" height="36" rx="8" fill="#eed3ee" stroke="#853284" stroke-width="1.2" opacity="0.9"/>
+<text x="88" y="145" text-anchor="middle" font-size="14" fill="#221a14">mouse</text>
+<rect x="160" y="131" width="160" height="18" rx="4" fill="none" stroke="#e6dccf" stroke-width="1.4"/>
+<rect x="160" y="131" width="160" height="18" rx="4" fill="#853284"/>
+<text x="360" y="145" text-anchor="end" font-size="13" fill="#853284" font-weight="600">1.00</text>
+<rect x="36" y="174" width="104" height="36" rx="8" fill="#eed3ee" stroke="#853284" stroke-width="1.2" opacity="0.9"/>
+<text x="88" y="197" text-anchor="middle" font-size="14" fill="#221a14">chased</text>
+<rect x="160" y="183" width="160" height="18" rx="4" fill="none" stroke="#e6dccf" stroke-width="1.4"/>
+<text x="360" y="197" text-anchor="end" font-size="13" fill="#5a4d42" font-weight="400">0.00</text>
+<line x1="36" y1="238" x2="360" y2="238" stroke="#e6dccf" stroke-width="1.4"/>
+<text x="36" y="264" font-size="12" fill="#5a4d42" letter-spacing="0.6">what comes back</text>
+<text x="36" y="288" font-size="13.5" fill="#221a14">the value of <tspan font-weight="600">mouse</tspan>, and nothing else</text>
+<text x="578" y="30" text-anchor="middle" font-size="18" font-weight="600" fill="#221a14">Soft lookup</text>
+<text x="578" y="52" text-anchor="middle" font-size="13" fill="#5a4d42">every key answers, the best key answers most</text>
+<rect x="416" y="70" width="104" height="36" rx="8" fill="#eed3ee" stroke="#853284" stroke-width="1.2" opacity="0.9"/>
+<text x="468" y="93" text-anchor="middle" font-size="14" fill="#221a14">cat</text>
+<rect x="540" y="79" width="160" height="18" rx="4" fill="none" stroke="#e6dccf" stroke-width="1.4"/>
+<rect x="540" y="79" width="24" height="18" rx="4" fill="#853284"/>
+<text x="740" y="93" text-anchor="end" font-size="13" fill="#853284" font-weight="600">0.15</text>
+<rect x="416" y="122" width="104" height="36" rx="8" fill="#eed3ee" stroke="#853284" stroke-width="1.2" opacity="0.9"/>
+<text x="468" y="145" text-anchor="middle" font-size="14" fill="#221a14">mouse</text>
+<rect x="540" y="131" width="160" height="18" rx="4" fill="none" stroke="#e6dccf" stroke-width="1.4"/>
+<rect x="540" y="131" width="112" height="18" rx="4" fill="#853284"/>
+<text x="740" y="145" text-anchor="end" font-size="13" fill="#853284" font-weight="600">0.70</text>
+<rect x="416" y="174" width="104" height="36" rx="8" fill="#eed3ee" stroke="#853284" stroke-width="1.2" opacity="0.9"/>
+<text x="468" y="197" text-anchor="middle" font-size="14" fill="#221a14">chased</text>
+<rect x="540" y="183" width="160" height="18" rx="4" fill="none" stroke="#e6dccf" stroke-width="1.4"/>
+<rect x="540" y="183" width="24" height="18" rx="4" fill="#853284"/>
+<text x="740" y="197" text-anchor="end" font-size="13" fill="#853284" font-weight="600">0.15</text>
+<line x1="416" y1="238" x2="740" y2="238" stroke="#e6dccf" stroke-width="1.4"/>
+<text x="416" y="264" font-size="12" fill="#5a4d42" letter-spacing="0.6">what comes back</text>
+<text x="416" y="288" font-size="13.5" fill="#221a14">0.15 × cat  +  <tspan font-weight="600">0.70 × mouse</tspan>  +  0.15 × chased</text>
+</svg>
