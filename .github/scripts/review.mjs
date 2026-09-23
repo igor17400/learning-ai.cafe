@@ -4,15 +4,22 @@
 import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import OpenAI from "openai";
+import { prFiles } from "./pr-diff.mjs";
 
 const { PR, REPO } = process.env;
 const MODEL = process.env.REVIEW_MODEL || "gpt-5-mini";
+// 64 MB buffer: the files API answers with every patch, and figures are big
 const gh = (args, input) =>
-  execFileSync("gh", args, { encoding: "utf8", input });
+  execFileSync("gh", args, {
+    encoding: "utf8",
+    input,
+    maxBuffer: 64 * 1024 * 1024,
+  });
 
-const files = JSON.parse(
-  gh(["api", "--paginate", `repos/${REPO}/pulls/${PR}/files`]),
-).filter((f) => /^tutorials\/.*\.(md|yaml)$/.test(f.filename) && f.patch);
+// only tutorial text; figure bodies are dropped by the diff parser
+const files = prFiles(REPO, PR).filter(
+  (f) => /^tutorials\/.*\.(md|yaml)$/.test(f.filename) && f.patch,
+);
 if (!files.length) {
   console.log("no tutorial text changed, nothing to review");
   process.exit(0);
@@ -26,7 +33,7 @@ const conventions = readFileSync("README.md", "utf8");
 const diff = files
   .map(
     (f) =>
-      `### ${f.filename} (${f.status}, +${f.additions} -${f.deletions})\n\`\`\`diff\n${f.patch}\n\`\`\``,
+      `### ${f.filename} (${f.status}, +${f.additions})\n\`\`\`diff\n${f.patch}\n\`\`\``,
   )
   .join("\n\n");
 

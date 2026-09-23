@@ -7,6 +7,7 @@
 import { execFileSync } from "node:child_process";
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import GithubSlugger from "github-slugger";
+import { prFiles } from "./pr-diff.mjs";
 
 const DEFAULT_SCORE = {
   page: 8,
@@ -159,10 +160,8 @@ function main() {
     readFileSync(process.env.GITHUB_EVENT_PATH, "utf8"),
   ).pull_request;
   const gh = (args) =>
-    JSON.parse(
-      execFileSync("gh", ["api", "--paginate", ...args], { encoding: "utf8" }),
-    );
-  const files = gh([`repos/${process.env.REPO}/pulls/${event.number}/files`]);
+    JSON.parse(execFileSync("gh", ["api", ...args], { encoding: "utf8" }));
+  const files = prFiles(process.env.REPO, event.number);
   const pr = {
     number: event.number,
     login: event.user.login,
