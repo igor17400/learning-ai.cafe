@@ -785,6 +785,9 @@ footer p {
   display: contents;
 }
 article.page {
+  /* auto margins stop the grid stretch, so without this the article is sized by
+     its widest child (a code block) and the whole page scrolls sideways */
+  width: 100%;
   max-width: var(--measure);
   margin: 0 auto;
   padding: 2.5rem 0 4rem;
@@ -1904,6 +1907,12 @@ dialog.modal.toc {
     gap: 0.35rem;
   }
   .quicknav {
+    display: none;
+  }
+  /* no book mode on a phone: two columns do not fit, so the toggle and the
+     setting go away with it (src/scripts/book.js forces it off as well) */
+  .topbar [data-toggle-reader],
+  [data-book-setting] {
     display: none;
   }
   .topbar .brand {
