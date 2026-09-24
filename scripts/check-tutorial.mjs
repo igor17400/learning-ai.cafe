@@ -41,34 +41,40 @@ function sections(md) {
 function checkPage(dir, file, manifest, writtenSlugs) {
   const where = `${file}`;
   const md = readFileSync(join(dir, "pages", file), "utf8");
+  // a references page is a list of sources, not an argument: it carries no
+  // subtitle, no sections to credit, no highlight and no length worth measuring
+  const isRefs = file.endsWith("/references.md");
   const fm = /^---\n([\s\S]*?)\n---/.exec(md);
   if (!fm) err(where, "no front matter");
   else
-    for (const k of ["title", "subtitle"])
+    for (const k of isRefs ? ["title"] : ["title", "subtitle"])
       if (!new RegExp(`^${k}:`, "m").test(fm[1]))
         err(where, `front matter lacks ${k}`);
   const body = fm ? md.slice(fm[0].length) : md;
+  // a "# " comment in a python block is not a heading, and == in code is not a
+  // highlight, so the prose checks run on the body with fenced code removed
+  const prose = body.replace(/^```[\s\S]*?^```/gm, "");
 
-  const ids = sections(body);
-  if (ids.length < 2)
+  const ids = sections(prose);
+  if (!isRefs && ids.length < 2)
     err(
       where,
       `${ids.length} section(s); a chapter needs at least two ## headings`,
     );
   const dupes = ids.filter((id, i) => ids.indexOf(id) !== i);
   if (dupes.length) err(where, `duplicate section ids: ${dupes.join(", ")}`);
-  if (/^# /m.test(body))
+  if (/^# /m.test(prose))
     err(where, "a # heading; the title comes from front matter, use ##");
 
   const opens = (body.match(/^:::\w/gm) || []).length,
     closes = (body.match(/^:::\s*$/gm) || []).length;
   if (opens !== closes)
     err(where, `${opens} ::: blocks opened, ${closes} closed`);
-  const hl = (body.match(/==/g) || []).length;
+  const hl = (prose.match(/==/g) || []).length;
   if (hl % 2) err(where, "unbalanced == highlight markers");
-  if (hl / 2 > 2)
+  if (!isRefs && hl / 2 > 2)
     warn(where, `${hl / 2} highlights; the convention is one or two`);
-  if (hl === 0) warn(where, "no ==highlight==");
+  if (hl === 0 && !isRefs) warn(where, "no ==highlight==");
   if ((body.match(/^\$\$\s*$/gm) || []).length % 2)
     err(where, "unbalanced $$ fences");
   const html = [
@@ -103,7 +109,8 @@ function checkPage(dir, file, manifest, writtenSlugs) {
     if (!writtenSlugs.has(m[1]))
       err(where, `link to ../${m[1]}/ but that chapter is not written`);
   const words = body.split(/\s+/).filter(Boolean).length;
-  if (words < 800) warn(where, `${words} words, short for a chapter`);
+  if (words < 800 && !isRefs)
+    warn(where, `${words} words, short for a chapter`);
   if (words > 3000) warn(where, `${words} words, consider splitting`);
   return { ids, used, words };
 }

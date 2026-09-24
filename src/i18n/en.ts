@@ -59,7 +59,12 @@ export default {
   open: "100% open source. Refine a paragraph, fix a bug, or add a figure. Credit is baked into every contribution you make.",
   footer:
     "Text and figures CC BY-NC-SA 4.0. Platform code MIT. Made in the open, one topic at a time. Cover crests from the Wikimedia Commons heraldry project, CC BY.",
-  foundations_t: "Foundations",
-  foundations:
-    "Softmax, Bayes, temperature, masking, similarity. The pages every tutorial reaches for and none of them owns yet.",
+  cite: "cite",
+  close: "Close",
+  copy: "copy",
+  copied: "copied",
+  copy_failed: "select and copy",
+  wanted_t: "What next?",
+  wanted:
+    "Tell us which topic should come next, or write it yourself. Every tutorial on this shelf started as an issue.",
 } as const;

@@ -201,9 +201,71 @@ pre {
   overflow-x: auto;
   line-height: 1.55;
   font-size: 0.85rem;
+  position: relative; /* anchors the copy button */
 }
 pre code {
   font-size: inherit;
+}
+button.cite {
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 0.1rem 0.45rem;
+  vertical-align: 0.1em;
+}
+button.cite:hover {
+  color: var(--accent);
+  border-color: var(--accent-line);
+}
+dialog.modal pre {
+  margin: 0;
+  max-height: 60vh;
+}
+pre .copy {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-family: var(--sans);
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--ink-3);
+  background: var(--bg);
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 0.2rem 0.5rem;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+pre:hover .copy,
+pre .copy:focus-visible {
+  opacity: 1;
+}
+@media (hover: none) {
+  button.cite {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.04em;
+    color: var(--ink-3);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 0.1rem 0.45rem;
+    vertical-align: 0.1em;
+  }
+  button.cite:hover {
+    color: var(--accent);
+    border-color: var(--accent-line);
+  }
+  dialog.modal pre {
+    margin: 0;
+    max-height: 60vh;
+  }
+  pre .copy {
+    opacity: 1;
+  }
 }
 table {
   border-collapse: collapse;
@@ -1382,6 +1444,12 @@ html[data-reader="on"] {
 [data-reader="on"] .aside-open,
 [data-reader="on"] li {
   break-inside: avoid;
+}
+.page-end {
+  position: absolute;
+  top: 0;
+  width: 1px;
+  height: 1px;
 }
 [data-reader="on"] article.page header {
   margin-bottom: 1.75rem;

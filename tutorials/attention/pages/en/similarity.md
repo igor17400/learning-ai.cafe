@@ -7,7 +7,7 @@ subtitle: "Dot products, projections, and what it means for a key to match a que
 
 Here is the entire requirement. Two vectors go in, one number comes out, and that number says how alike the two are. One operation already does it: multiply the two vectors element by element and add up the results. That is the dot product.
 
-Before any numbers, be clear about which two vectors these are. The query $q$ is the request itself, the numeric form of _what did the cat chase?_ The key $k$ belongs to one word, and it is whatever makes that word findable. There is one query and one key per word, so ==this multiply-and-add happens once for every word in the sentence, giving each word its own score==. Where the vectors come from is a later chapter; for now, assume someone hands them over.
+Before any numbers, be clear about which two vectors these are. The query $q$ is the request itself, the numeric form of _what did the cat chase?_ The key $k$ belongs to one word, and it is whatever makes that word findable. There is one query and one key per word, so ==this multiply-and-add happens once for every word in the sentence, giving each word its own score==. Where the vectors come from is a later chapter; for now, assume someone hands them over. To see how a word becomes a vector in the first place, the [Embeddings](/embeddings/intro/) book starts there.
 
 :::figure{#dot_product_steps}
 ![The same query multiplied position by position against two different keys, each set of products summed into a single number.](../../figures/dot_product_steps.svg)

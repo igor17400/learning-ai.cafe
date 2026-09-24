@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 436" font-family="Inter, system-ui, sans-serif">
+<text x="190" y="34" text-anchor="middle" font-size="12.5" fill="#5a4d42" font-weight="600">ONE AXIS PER WORD</text>
+<text x="190" y="56" text-anchor="middle" font-size="12" fill="#8a7d70" font-weight="400">the one-hot table, drawn</text>
+<line x1="190" y1="250" x2="190" y2="110" stroke="#8a7d70" stroke-width="1.5"/><circle cx="190" cy="110" r="2.6" fill="#8a7d70"/>
+<text x="190" y="100" text-anchor="middle" font-size="12.5" fill="#221a14" font-weight="400">queen</text>
+<line x1="190" y1="250" x2="310" y2="310" stroke="#8a7d70" stroke-width="1.5"/><circle cx="310" cy="310" r="2.6" fill="#8a7d70"/>
+<text x="310" y="330" text-anchor="middle" font-size="12.5" fill="#221a14" font-weight="400">king</text>
+<line x1="190" y1="250" x2="70" y2="310" stroke="#8a7d70" stroke-width="1.5"/><circle cx="70" cy="310" r="2.6" fill="#8a7d70"/>
+<text x="70" y="330" text-anchor="middle" font-size="12.5" fill="#221a14" font-weight="400">apple</text>
+<circle cx="190" cy="250" r="3" fill="#8a7d70"/>
+<text x="190" y="364" text-anchor="middle" font-size="12.5" fill="#5a4d42" font-weight="400">every word points its own way,</text>
+<text x="190" y="382" text-anchor="middle" font-size="12.5" fill="#5a4d42" font-weight="400">at a right angle to all the others</text>
+<text x="190" y="406" text-anchor="middle" font-size="12" fill="#8a7d70" font-weight="400" font-style="italic">5 words need 5 axes; nothing is shared</text>
+<text x="560" y="34" text-anchor="middle" font-size="12.5" fill="#2f6a91" font-weight="600">TWO AXES, SHARED</text>
+<text x="560" y="56" text-anchor="middle" font-size="12" fill="#8a7d70" font-weight="400">what a learned table can do</text>
+<line x1="430" y1="250" x2="710" y2="250" stroke="#d5c8b6" stroke-width="1.5"/>
+<line x1="450" y1="320" x2="450" y2="110" stroke="#d5c8b6" stroke-width="1.5"/>
+<text x="710" y="268" text-anchor="end" font-size="11" fill="#8a7d70" font-weight="400">dimension 1</text>
+<text x="456" y="104" text-anchor="start" font-size="11" fill="#8a7d70" font-weight="400">dimension 2</text>
+<line x1="450" y1="230" x2="664" y2="230" stroke="#d5c8b6" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="664" y1="250" x2="664" y2="230" stroke="#d5c8b6" stroke-width="1" stroke-dasharray="3 3"/>
+<circle cx="664" cy="230" r="5.5" fill="#2f6a91"/>
+<text x="664" y="216" text-anchor="middle" font-size="12.5" fill="#221a14" font-weight="400">apple</text>
+<line x1="450" y1="154" x2="550" y2="154" stroke="#d5c8b6" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="550" y1="250" x2="550" y2="154" stroke="#d5c8b6" stroke-width="1" stroke-dasharray="3 3"/>
+<circle cx="550" cy="154" r="5.5" fill="#2f6a91"/>
+<text x="498" y="138" text-anchor="end" font-size="12.5" fill="#221a14" font-weight="400">king</text>
+<line x1="504.0" y1="140.0" x2="542.3" y2="151.7" stroke="#8a7d70" stroke-width="1.2"/><path d="M 542.3 151.7 L 535.4 152.5 L 537.1 147.1 Z" fill="#8a7d70"/>
+<line x1="450" y1="166" x2="576" y2="166" stroke="#d5c8b6" stroke-width="1" stroke-dasharray="3 3"/>
+<line x1="576" y1="250" x2="576" y2="166" stroke="#d5c8b6" stroke-width="1" stroke-dasharray="3 3"/>
+<circle cx="576" cy="166" r="5.5" fill="#2f6a91"/>
+<text x="498" y="202" text-anchor="end" font-size="12.5" fill="#221a14" font-weight="400">queen</text>
+<line x1="504.0" y1="196.0" x2="568.6" y2="169.1" stroke="#8a7d70" stroke-width="1.2"/><path d="M 568.6 169.1 L 563.8 174.2 L 561.6 168.9 Z" fill="#8a7d70"/>
+<ellipse cx="563" cy="160" rx="34" ry="24" fill="none" stroke="#2f6a91" stroke-width="1.2" stroke-dasharray="4 3" opacity="0.8"/>
+<text x="604" y="132" text-anchor="start" font-size="11" fill="#2f6a91" font-weight="400">near each other</text>
+<text x="560" y="364" text-anchor="middle" font-size="12.5" fill="#5a4d42" font-weight="400">every word is a mixture of the same</text>
+<text x="560" y="382" text-anchor="middle" font-size="12.5" fill="#5a4d42" font-weight="400">two numbers, so two words can land near</text>
+<text x="560" y="406" text-anchor="middle" font-size="12" fill="#2f6a91" font-weight="400" font-style="italic">5 words share 2 axes; closeness now means something</text>
+<line x1="380" y1="24" x2="380" y2="420" stroke="#d5c8b6" stroke-width="1.3"/>
+</svg>

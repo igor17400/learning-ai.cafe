@@ -28,8 +28,15 @@ function perSpread() {
 // calibrated on this chapter's real page count, so numbering runs across chapters
 let offset = 0,
   total = 0;
+// the browser clamps scrolling at scrollWidth - clientWidth, so a chapter that
+// ends in an odd column could not reach its last spread cleanly and showed the
+// previous column twice. A spacer at the end makes every spread reachable.
+const spacer = document.createElement("span");
+spacer.className = "page-end";
+spacer.setAttribute("aria-hidden", "true");
 function measure() {
   const s = stride();
+  spacer.remove();
   spreads =
     s > 0
       ? Math.max(
@@ -37,6 +44,8 @@ function measure() {
           Math.ceil((article.scrollWidth - article.clientWidth + s) / s),
         )
       : 1;
+  spacer.style.left = `${(spreads - 1) * s + article.clientWidth - 1}px`;
+  article.appendChild(spacer);
   const local = spreads * perSpread();
   const wpp = Math.max(1, (chapters[chapter]?.words || 1) / local);
   const est = (c, j) =>
@@ -124,7 +133,9 @@ export function setReader(on) {
   bookAsides(on);
   if (on) {
     const raw = store.get("page." + location.pathname);
-    const saved = raw === "end" ? Infinity : Number(raw) || 0;
+    // "end" is set by the next chapter when the reader turns back past its
+    // first page; it resolves to the last spread once this chapter is measured
+    const saved = raw === "end" ? "end" : Number(raw) || 0;
     // a first visit to chapter one starts on the closed book
     if (raw === null && !location.hash && $("[data-open-book]")) closeBook();
     requestAnimationFrame(() => {
@@ -133,7 +144,9 @@ export function setReader(on) {
         show(
           location.hash
             ? spreadOf($(decodeURIComponent(location.hash)))
-            : saved,
+            : saved === "end"
+              ? spreads - 1
+              : saved,
         );
     });
     const settle = () => {
@@ -146,6 +159,7 @@ export function setReader(on) {
     document.fonts?.ready.then(settle);
   } else {
     delete root.dataset.book;
+    spacer.remove(); // it would widen the normal page
     article.scrollTo({ left: 0 });
     if (count) count.textContent = "";
     progressScroll();

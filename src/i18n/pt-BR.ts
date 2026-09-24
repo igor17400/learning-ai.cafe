@@ -61,7 +61,12 @@ export default {
   open: "100% código aberto. Refine um parágrafo, corrija um erro ou adicione uma figura. O crédito faz parte de cada contribuição que você faz.",
   footer:
     "Texto e figuras CC BY-NC-SA 4.0. Código da plataforma MIT. Feito em aberto, um tema de cada vez. Brasões das capas do projeto de heráldica do Wikimedia Commons, CC BY.",
-  foundations_t: "Fundamentos",
-  foundations:
-    "Softmax, Bayes, temperatura, máscaras, similaridade. As páginas que todo tutorial usa e nenhum possui ainda.",
+  cite: "citar",
+  close: "Fechar",
+  copy: "copiar",
+  copied: "copiado",
+  copy_failed: "selecione e copie",
+  wanted_t: "E agora?",
+  wanted:
+    "Diga qual tema deve vir a seguir, ou escreva você mesmo. Todo tutorial desta estante começou como uma issue.",
 } satisfies Record<keyof typeof en, string>;

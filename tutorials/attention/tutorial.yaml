@@ -7,7 +7,7 @@ cover: "phoenix"
 hue: 301
 languages: ["en"]
 requires: []
-related: []
+related: ["cafe/embeddings"]
 pages:
   - {
       "slug": "intro",
@@ -70,3 +70,4 @@ pages:
       "subtitle": "Quadratic complexity, the KV cache, and what linear and flash attention really change.",
       "status": "planned",
     }
+  - { slug: "references", title: "References" }

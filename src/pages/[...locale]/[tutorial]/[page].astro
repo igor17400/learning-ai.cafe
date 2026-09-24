@@ -199,7 +199,7 @@ const alternates = tut.data.languages
             {num} &middot; {tut.data.title}
           </p>
           <h1>{title}</h1>
-          <p class="sub">{subtitle}</p>
+          {subtitle && <p class="sub">{subtitle}</p>}
           <p class="byline" data-byline>
             {entry.data.verified && (
               <span class="verified" title={entry.data.verified}>

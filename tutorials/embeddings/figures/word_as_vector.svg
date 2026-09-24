@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 272" font-family="Inter, system-ui, sans-serif">
+<line x1="380" y1="18" x2="380" y2="254" stroke="#d5c8b6" stroke-width="1.4"/>
+<text x="190" y="30" text-anchor="middle" font-size="13" fill="#5a4d42" font-weight="500">A WORD AS TEXT</text>
+<text x="190" y="54" text-anchor="middle" font-size="12.5" fill="#5a4d42" font-weight="400">nothing here can be added or compared</text>
+<rect x="70" y="80" width="110" height="42" rx="9" fill="none" stroke="#d5c8b6" stroke-width="1.6"/>
+<text x="125" y="107" text-anchor="middle" font-size="16" fill="#221a14" font-weight="400">king</text>
+<rect x="250" y="80" width="110" height="42" rx="9" fill="none" stroke="#d5c8b6" stroke-width="1.6"/>
+<text x="305" y="107" text-anchor="middle" font-size="16" fill="#221a14" font-weight="400">queen</text>
+<text x="215" y="107" text-anchor="middle" font-size="20" fill="#5a4d42" font-weight="400">−</text>
+<text x="190" y="160" text-anchor="middle" font-size="22" fill="#5a4d42" font-weight="400">= ?</text>
+<text x="190" y="196" text-anchor="middle" font-size="12.5" fill="#5a4d42" font-weight="400">a string has no arithmetic,</text>
+<text x="190" y="214" text-anchor="middle" font-size="12.5" fill="#5a4d42" font-weight="400">and no notion of how close two words are</text>
+<text x="580" y="30" text-anchor="middle" font-size="13" fill="#2f6a91" font-weight="500">A WORD AS A VECTOR</text>
+<text x="580" y="54" text-anchor="middle" font-size="12.5" fill="#5a4d42" font-weight="400">every operation a model needs is defined</text>
+<text x="458" y="102" text-anchor="end" font-size="14" fill="#221a14" font-weight="400">king</text>
+<rect x="472" y="82" width="58" height="30" rx="6" fill="#d8e6ef" stroke="#2f6a91" stroke-width="1.1"/>
+<text x="501" y="102" text-anchor="middle" font-size="13" fill="#221a14" font-weight="400">0.7</text>
+<rect x="538" y="82" width="58" height="30" rx="6" fill="#d8e6ef" stroke="#2f6a91" stroke-width="1.1"/>
+<text x="567" y="102" text-anchor="middle" font-size="13" fill="#221a14" font-weight="400">-0.2</text>
+<rect x="604" y="82" width="58" height="30" rx="6" fill="#d8e6ef" stroke="#2f6a91" stroke-width="1.1"/>
+<text x="633" y="102" text-anchor="middle" font-size="13" fill="#221a14" font-weight="400">0.9</text>
+<rect x="670" y="82" width="58" height="30" rx="6" fill="#d8e6ef" stroke="#2f6a91" stroke-width="1.1"/>
+<text x="699" y="102" text-anchor="middle" font-size="13" fill="#221a14" font-weight="400">0.1</text>
+<text x="458" y="154" text-anchor="end" font-size="14" fill="#221a14" font-weight="400">queen</text>
+<rect x="472" y="134" width="58" height="30" rx="6" fill="#d8e6ef" stroke="#2f6a91" stroke-width="1.1"/>
+<text x="501" y="154" text-anchor="middle" font-size="13" fill="#221a14" font-weight="400">0.6</text>
+<rect x="538" y="134" width="58" height="30" rx="6" fill="#d8e6ef" stroke="#2f6a91" stroke-width="1.1"/>
+<text x="567" y="154" text-anchor="middle" font-size="13" fill="#221a14" font-weight="400">-0.3</text>
+<rect x="604" y="134" width="58" height="30" rx="6" fill="#d8e6ef" stroke="#2f6a91" stroke-width="1.1"/>
+<text x="633" y="154" text-anchor="middle" font-size="13" fill="#221a14" font-weight="400">0.8</text>
+<rect x="670" y="134" width="58" height="30" rx="6" fill="#d8e6ef" stroke="#2f6a91" stroke-width="1.1"/>
+<text x="699" y="154" text-anchor="middle" font-size="13" fill="#221a14" font-weight="400">0.2</text>
+<line x1="466" y1="184" x2="736" y2="184" stroke="#d5c8b6" stroke-width="1.4"/>
+<text x="458" y="206" text-anchor="end" font-size="15" fill="#5a4d42" font-weight="400">−</text>
+<rect x="472" y="192" width="58" height="30" rx="6" fill="none" stroke="#2f6a91" stroke-width="1.4"/>
+<text x="501" y="212" text-anchor="middle" font-size="13" fill="#2f6a91" font-weight="400">+0.1</text>
+<rect x="538" y="192" width="58" height="30" rx="6" fill="none" stroke="#2f6a91" stroke-width="1.4"/>
+<text x="567" y="212" text-anchor="middle" font-size="13" fill="#2f6a91" font-weight="400">+0.1</text>
+<rect x="604" y="192" width="58" height="30" rx="6" fill="none" stroke="#2f6a91" stroke-width="1.4"/>
+<text x="633" y="212" text-anchor="middle" font-size="13" fill="#2f6a91" font-weight="400">+0.1</text>
+<rect x="670" y="192" width="58" height="30" rx="6" fill="none" stroke="#2f6a91" stroke-width="1.4"/>
+<text x="699" y="212" text-anchor="middle" font-size="13" fill="#2f6a91" font-weight="400">-0.1</text>
+<text x="580" y="246" text-anchor="middle" font-size="12.5" fill="#5a4d42" font-weight="400">a small difference, because the two words are used alike</text>
+</svg>
