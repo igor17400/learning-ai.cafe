@@ -7,6 +7,7 @@ import rehypeMathjax from "rehype-mathjax/chtml";
 import { rehypeHeadingIds } from "@astrojs/markdown-remark";
 import { remarkBlocks } from "./src/plugins/remark-blocks.mjs";
 import { rehypeSections } from "./src/plugins/rehype-sections.mjs";
+import { rehypeExternalLinks } from "./src/plugins/rehype-external-links.mjs";
 
 export default defineConfig({
   site: "https://learning-ai.cafe",
@@ -28,6 +29,7 @@ export default defineConfig({
     rehypePlugins: [
       rehypeHeadingIds,
       rehypeSections,
+      rehypeExternalLinks,
       [
         rehypeMathjax,
         {

@@ -11,7 +11,7 @@ related: ["cafe/attention"]
 pages:
   - {
       slug: "intro",
-      title: "Why a Word Has to Become a Vector",
+      title: "Word Has to Become a Vector",
       subtitle: "A model does arithmetic, and a word is not a number.",
     }
   - {
@@ -23,7 +23,6 @@ pages:
       slug: "distributional",
       title: "The Company a Word Keeps",
       subtitle: "Meaning from context: the idea the whole field is built on.",
-      status: "planned",
     }
   - {
       slug: "word2vec",

@@ -939,9 +939,11 @@ figure {
 figure img {
   /* SVGs carry a viewBox and no width/height, so their intrinsic size is the
      drawing's own points; without this they render small inside the measure. */
+  display: block; /* inline images sit on a baseline and leave a gap below */
   width: 100%;
   max-width: 100%;
   height: auto;
+  margin: 0 auto;
   background: var(--fig-bg);
   border-radius: 10px;
   padding: 6px;
@@ -953,7 +955,7 @@ figcaption {
   font-size: 0.875rem;
   color: var(--ink-2);
   max-width: 34rem;
-  margin: 0.75rem auto 0;
+  margin: 0.35rem auto 0;
   line-height: 1.55;
 }
 figcaption .info {

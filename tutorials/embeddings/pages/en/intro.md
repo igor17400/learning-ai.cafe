@@ -1,5 +1,5 @@
 ---
-title: "Why a Word Has to Become a Vector"
+title: "Word Has to Become a Vector"
 subtitle: "A model does arithmetic, and a word is not a number."
 ---
 

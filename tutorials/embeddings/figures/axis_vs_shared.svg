@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 436" font-family="Inter, system-ui, sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 18 760 396" font-family="Inter, system-ui, sans-serif">
 <text x="190" y="34" text-anchor="middle" font-size="12.5" fill="#5a4d42" font-weight="600">ONE AXIS PER WORD</text>
 <text x="190" y="56" text-anchor="middle" font-size="12" fill="#8a7d70" font-weight="400">the one-hot table, drawn</text>
 <line x1="190" y1="250" x2="190" y2="110" stroke="#8a7d70" stroke-width="1.5"/><circle cx="190" cy="110" r="2.6" fill="#8a7d70"/>
