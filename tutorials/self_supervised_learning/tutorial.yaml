@@ -1,0 +1,58 @@
+schema: 1
+id: "cafe/self_supervised_learning"
+title: "Learning by Comparison"
+track: "Representation Learning"
+tagline: "Teach the model what makes two examples similar (and what makes them different) without ever looking at the labels."
+cover: "unicorn"
+hue: 255
+languages: ["en"]
+requires: []
+related: ["cafe/embeddings"]
+pages:
+  - {
+      "slug": "intro",
+      "title": "Introduction",
+      "subtitle": "What is self-supervised learning?",
+    }
+  - {
+      "slug": "nce",
+      "title": "Noise-Contrastive Estimation",
+      "subtitle": "Estimating unnormalised models by discriminating data from noise.",
+    }
+  - {
+      "slug": "triplet_loss",
+      "title": "Triplet Loss",
+      "subtitle": "Learning embeddings where distance means similarity.",
+    }
+  - {
+      "slug": "lifted_structured",
+      "title": "Lifted Structured Loss",
+      "subtitle": "Using all pairwise distances in a batch for richer training signal.",
+    }
+  - {
+      "slug": "npair_loss",
+      "title": "N-pair Loss",
+      "subtitle": "Pushing against all negative classes at once.",
+    }
+  - {
+      "slug": "info_nce",
+      "title": "InfoNCE Loss",
+      "subtitle": "Contrastive objective, temperature, and mutual information bound.",
+    }
+  - {
+      "slug": "simclr",
+      "title": "SimCLR",
+      "subtitle": "Simple framework for contrastive learning of visual representations.",
+    }
+  - {
+      "slug": "moco",
+      "title": "MoCo",
+      "subtitle": "Momentum contrast and the dictionary-as-queue mechanism.",
+    }
+  - {
+      "slug": "byol",
+      "title": "BYOL & Beyond",
+      "subtitle": "Non-contrastive methods: bootstrap your own latent without negatives.",
+      "status": "planned",
+    }
+  - { slug: "references", title: "References" }
