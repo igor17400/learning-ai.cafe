@@ -28,7 +28,6 @@ pages:
       slug: "word2vec",
       title: "Learning by Prediction",
       subtitle: "word2vec, negative sampling, and what the training signal actually is.",
-      status: "planned",
     }
   - {
       slug: "geometry",
