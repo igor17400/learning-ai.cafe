@@ -184,6 +184,168 @@ title: "References"
 }
 ```
 
+[Japanese and Korean Voice Search](https://doi.org/10.1109/ICASSP.2012.6289079) — Schuster & Nakajima. ICASSP 2012. The origin of WordPiece.
+
+```bibtex
+@inproceedings{schuster2012japanese,
+  title     = {Japanese and Korean Voice Search},
+  author    = {Schuster, Mike and Nakajima, Kaisuke},
+  booktitle = {IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
+  pages     = {5149--5152},
+  year      = {2012}
+}
+```
+
+[Linguistic Regularities in Sparse and Explicit Word Representations](https://aclanthology.org/W14-1618/) — Levy & Goldberg. CoNLL 2014. Introduces 3CosMul.
+
+```bibtex
+@inproceedings{levy2014linguistic,
+  title     = {Linguistic Regularities in Sparse and Explicit Word Representations},
+  author    = {Levy, Omer and Goldberg, Yoav},
+  booktitle = {Conference on Computational Natural Language Learning (CoNLL)},
+  pages     = {171--180},
+  year      = {2014}
+}
+```
+
+[Measuring Word Significance using Distributed Representations of Words](https://arxiv.org/abs/1508.02297) — Schakel & Wilson. 2015.
+
+```bibtex
+@article{schakel2015measuring,
+  title   = {Measuring Word Significance using Distributed Representations of Words},
+  author  = {Schakel, Adriaan M. J. and Wilson, Benjamin J.},
+  journal = {arXiv preprint arXiv:1508.02297},
+  year    = {2015},
+  eprint  = {1508.02297},
+  archivePrefix = {arXiv}
+}
+```
+
+[Issues in Evaluating Semantic Spaces using Word Analogies](https://aclanthology.org/W16-2503/) — Linzen. RepEval 2016.
+
+```bibtex
+@inproceedings{linzen2016issues,
+  title     = {Issues in Evaluating Semantic Spaces using Word Analogies},
+  author    = {Linzen, Tal},
+  booktitle = {Proceedings of the 1st Workshop on Evaluating Vector-Space Representations for NLP (RepEval)},
+  pages     = {13--18},
+  year      = {2016}
+}
+```
+
+[Fair Is Better than Sensational: Man Is to Doctor as Woman Is to Doctor](https://aclanthology.org/2020.cl-2.7/) — Nissim, van Noord & van der Goot. Computational Linguistics 46(2), 2020.
+
+```bibtex
+@article{nissim2020fair,
+  title   = {Fair Is Better than Sensational: Man Is to Doctor as Woman Is to Doctor},
+  author  = {Nissim, Malvina and van Noord, Rik and van der Goot, Rob},
+  journal = {Computational Linguistics},
+  volume  = {46},
+  number  = {2},
+  pages   = {487--497},
+  year    = {2020}
+}
+```
+
+[Linear Algebraic Structure of Word Senses, with Applications to Polysemy](https://arxiv.org/abs/1601.03764) — Arora, Li, Liang, Ma & Risteski. TACL 6, 2018.
+
+```bibtex
+@article{arora2018linear,
+  title   = {Linear Algebraic Structure of Word Senses, with Applications to Polysemy},
+  author  = {Arora, Sanjeev and Li, Yuanzhi and Liang, Yingyu and Ma, Tengyu and Risteski, Andrej},
+  journal = {Transactions of the Association for Computational Linguistics},
+  volume  = {6},
+  year    = {2018},
+  eprint  = {1601.03764},
+  archivePrefix = {arXiv}
+}
+```
+
+[Semantics Derived Automatically from Language Corpora Contain Human-like Biases](https://doi.org/10.1126/science.aal4230) — Caliskan, Bryson & Narayanan. Science 356(6334), 2017.
+
+```bibtex
+@article{caliskan2017semantics,
+  title   = {Semantics Derived Automatically from Language Corpora Contain Human-like Biases},
+  author  = {Caliskan, Aylin and Bryson, Joanna J. and Narayanan, Arvind},
+  journal = {Science},
+  volume  = {356},
+  number  = {6334},
+  pages   = {183--186},
+  year    = {2017},
+  eprint  = {1608.07187},
+  archivePrefix = {arXiv}
+}
+```
+
+[How Contextual are Contextualized Word Representations? Comparing the Geometry of BERT, ELMo, and GPT-2 Embeddings](https://arxiv.org/abs/1909.00512) — Ethayarajh. EMNLP 2019.
+
+```bibtex
+@inproceedings{ethayarajh2019contextual,
+  title     = {How Contextual are Contextualized Word Representations? Comparing the Geometry of BERT, ELMo, and GPT-2 Embeddings},
+  author    = {Ethayarajh, Kawin},
+  booktitle = {Empirical Methods in Natural Language Processing (EMNLP)},
+  year      = {2019},
+  eprint    = {1909.00512},
+  archivePrefix = {arXiv}
+}
+```
+
+[Dense Passage Retrieval for Open-Domain Question Answering](https://arxiv.org/abs/2004.04906) — Karpukhin et al. EMNLP 2020.
+
+```bibtex
+@inproceedings{karpukhin2020dense,
+  title     = {Dense Passage Retrieval for Open-Domain Question Answering},
+  author    = {Karpukhin, Vladimir and O{\u{g}}uz, Barlas and Min, Sewon and Lewis, Patrick and Wu, Ledell
+               and Edunov, Sergey and Chen, Danqi and Yih, Wen-tau},
+  booktitle = {Empirical Methods in Natural Language Processing (EMNLP)},
+  year      = {2020},
+  eprint    = {2004.04906},
+  archivePrefix = {arXiv}
+}
+```
+
+[Matryoshka Representation Learning](https://arxiv.org/abs/2205.13147) — Kusupati et al. NeurIPS 2022.
+
+```bibtex
+@inproceedings{kusupati2022matryoshka,
+  title     = {Matryoshka Representation Learning},
+  author    = {Kusupati, Aditya and Bhatt, Gantavya and Rege, Aniket and Wallingford, Matthew and Sinha, Aditya
+               and Ramanujan, Vivek and Howard-Snyder, William and Chen, Kaifeng and Kakade, Sham
+               and Jain, Prateek and Farhadi, Ali},
+  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+  year      = {2022},
+  eprint    = {2205.13147},
+  archivePrefix = {arXiv}
+}
+```
+
+[Text Embeddings by Weakly-Supervised Contrastive Pre-training](https://arxiv.org/abs/2212.03533) — Wang et al. 2022. The E5 models.
+
+```bibtex
+@article{wang2022text,
+  title   = {Text Embeddings by Weakly-Supervised Contrastive Pre-training},
+  author  = {Wang, Liang and Yang, Nan and Huang, Xiaolong and Jiao, Binxing and Yang, Linjun
+             and Jiang, Daxin and Majumder, Rangan and Wei, Furu},
+  journal = {arXiv preprint arXiv:2212.03533},
+  year    = {2022},
+  eprint  = {2212.03533},
+  archivePrefix = {arXiv}
+}
+```
+
+[MTEB: Massive Text Embedding Benchmark](https://arxiv.org/abs/2210.07316) — Muennighoff, Tazi, Magne & Reimers. EACL 2023.
+
+```bibtex
+@inproceedings{muennighoff2023mteb,
+  title     = {MTEB: Massive Text Embedding Benchmark},
+  author    = {Muennighoff, Niklas and Tazi, Nouamane and Magne, Lo{\"i}c and Reimers, Nils},
+  booktitle = {European Chapter of the Association for Computational Linguistics (EACL)},
+  year      = {2023},
+  eprint    = {2210.07316},
+  archivePrefix = {arXiv}
+}
+```
+
 [Speech and Language Processing, chapter 6: Vector Semantics and Embeddings](https://web.stanford.edu/~jurafsky/slp3/) — Jurafsky & Martin. 3rd edition draft.
 
 ```bibtex

@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 18 760 296" font-family="Inter, system-ui, sans-serif">
+<text x="380.0" y="34.0" text-anchor="middle" font-size="12.5" fill="#2f6a91" font-weight="600">EACH MERGE ADDS A ROW AND SHORTENS THE TEXT</text><text x="380.0" y="56.0" text-anchor="middle" font-size="12" fill="#6f6459" font-weight="400">byte-pair encoding learned on the ten sentences; _ marks the end of a word</text>
+<text x="94.0" y="92.0" text-anchor="middle" font-size="11.5" fill="#6f6459" font-weight="400">merges</text>
+<text x="170.0" y="92.0" text-anchor="start" font-size="11.5" fill="#6f6459" font-weight="400">kingdom</text>
+<text x="440.0" y="92.0" text-anchor="start" font-size="11.5" fill="#6f6459" font-weight="400">queen</text>
+<text x="648.0" y="92.0" text-anchor="middle" font-size="11.5" fill="#6f6459" font-weight="400">rows</text>
+<text x="712.0" y="92.0" text-anchor="middle" font-size="11.5" fill="#6f6459" font-weight="400">tokens</text>
+<text x="94.0" y="126.0" text-anchor="middle" font-size="13" fill="#221a14" font-weight="400">0</text>
+<rect x="170.0" y="108.0" width="25.0" height="28.0" rx="5" fill="none" stroke="#c5b6a2" stroke-width="1.25"/>
+<text x="182.5" y="127.0" text-anchor="middle" font-size="13" fill="#6f6459" font-weight="400" font-family="ui-monospace, Menlo, monospace">k</text>
+<rect x="200.0" y="108.0" width="25.0" height="28.0" rx="5" fill="none" stroke="#c5b6a2" stroke-width="1.25"/>
+<text x="212.5" y="127.0" text-anchor="middle" font-size="13" fill="#6f6459" font-weight="400" font-family="ui-monospace, Menlo, monospace">i</text>
+<rect x="230.0" y="108.0" width="25.0" height="28.0" rx="5" fill="none" stroke="#c5b6a2" stroke-width="1.25"/>
+<text x="242.5" y="127.0" text-anchor="middle" font-size="13" fill="#6f6459" font-weight="400" font-family="ui-monospace, Menlo, monospace">n</text>
+<rect x="260.0" y="108.0" width="25.0" height="28.0" rx="5" fill="none" stroke="#c5b6a2" stroke-width="1.25"/>
+<text x="272.5" y="127.0" text-anchor="middle" font-size="13" fill="#6f6459" font-weight="400" font-family="ui-monospace, Menlo, monospace">g</text>
+<rect x="290.0" y="108.0" width="25.0" height="28.0" rx="5" fill="none" stroke="#c5b6a2" stroke-width="1.25"/>
+<text x="302.5" y="127.0" text-anchor="middle" font-size="13" fill="#6f6459" font-weight="400" font-family="ui-monospace, Menlo, monospace">d</text>
+<rect x="320.0" y="108.0" width="25.0" height="28.0" rx="5" fill="none" stroke="#c5b6a2" stroke-width="1.25"/>
+<text x="332.5" y="127.0" text-anchor="middle" font-size="13" fill="#6f6459" font-weight="400" font-family="ui-monospace, Menlo, monospace">o</text>
+<rect x="350.0" y="108.0" width="25.0" height="28.0" rx="5" fill="none" stroke="#c5b6a2" stroke-width="1.25"/>
+<text x="362.5" y="127.0" text-anchor="middle" font-size="13" fill="#6f6459" font-weight="400" font-family="ui-monospace, Menlo, monospace">m</text>
+<rect x="380.0" y="108.0" width="25.0" height="28.0" rx="5" fill="none" stroke="#c5b6a2" stroke-width="1.25"/>
+<text x="392.5" y="127.0" text-anchor="middle" font-size="13" fill="#6f6459" font-weight="400" font-family="ui-monospace, Menlo, monospace">_</text>
+<rect x="440.0" y="108.0" width="25.0" height="28.0" rx="5" fill="none" stroke="#c5b6a2" stroke-width="1.25"/>
+<text x="452.5" y="127.0" text-anchor="middle" font-size="13" fill="#6f6459" font-weight="400" font-family="ui-monospace, Menlo, monospace">q</text>
+<rect x="470.0" y="108.0" width="25.0" height="28.0" rx="5" fill="none" stroke="#c5b6a2" stroke-width="1.25"/>
+<text x="482.5" y="127.0" text-anchor="middle" font-size="13" fill="#6f6459" font-weight="400" font-family="ui-monospace, Menlo, monospace">u</text>
+<rect x="500.0" y="108.0" width="25.0" height="28.0" rx="5" fill="none" stroke="#c5b6a2" stroke-width="1.25"/>
+<text x="512.5" y="127.0" text-anchor="middle" font-size="13" fill="#6f6459" font-weight="400" font-family="ui-monospace, Menlo, monospace">e</text>
+<rect x="530.0" y="108.0" width="25.0" height="28.0" rx="5" fill="none" stroke="#c5b6a2" stroke-width="1.25"/>
+<text x="542.5" y="127.0" text-anchor="middle" font-size="13" fill="#6f6459" font-weight="400" font-family="ui-monospace, Menlo, monospace">e</text>
+<rect x="560.0" y="108.0" width="25.0" height="28.0" rx="5" fill="none" stroke="#c5b6a2" stroke-width="1.25"/>
+<text x="572.5" y="127.0" text-anchor="middle" font-size="13" fill="#6f6459" font-weight="400" font-family="ui-monospace, Menlo, monospace">n</text>
+<rect x="590.0" y="108.0" width="25.0" height="28.0" rx="5" fill="none" stroke="#c5b6a2" stroke-width="1.25"/>
+<text x="602.5" y="127.0" text-anchor="middle" font-size="13" fill="#6f6459" font-weight="400" font-family="ui-monospace, Menlo, monospace">_</text>
+<text x="648.0" y="126.0" text-anchor="middle" font-size="13" fill="#221a14" font-weight="400">24</text>
+<text x="712.0" y="126.0" text-anchor="middle" font-size="13" fill="#2f6a91" font-weight="600">303</text>
+<text x="94.0" y="170.0" text-anchor="middle" font-size="13" fill="#221a14" font-weight="400">10</text>
+<rect x="170.0" y="152.0" width="58.0" height="28.0" rx="5" fill="#d8e6ef" stroke="#2f6a91" stroke-width="1.5"/>
+<text x="199.0" y="171.0" text-anchor="middle" font-size="13" fill="#221a14" font-weight="400" font-family="ui-monospace, Menlo, monospace">king</text>
+<rect x="233.0" y="152.0" width="25.0" height="28.0" rx="5" fill="none" stroke="#c5b6a2" stroke-width="1.25"/>
+<text x="245.5" y="171.0" text-anchor="middle" font-size="13" fill="#6f6459" font-weight="400" font-family="ui-monospace, Menlo, monospace">d</text>
+<rect x="263.0" y="152.0" width="25.0" height="28.0" rx="5" fill="none" stroke="#c5b6a2" stroke-width="1.25"/>
+<text x="275.5" y="171.0" text-anchor="middle" font-size="13" fill="#6f6459" font-weight="400" font-family="ui-monospace, Menlo, monospace">o</text>
+<rect x="293.0" y="152.0" width="25.0" height="28.0" rx="5" fill="none" stroke="#c5b6a2" stroke-width="1.25"/>
+<text x="305.5" y="171.0" text-anchor="middle" font-size="13" fill="#6f6459" font-weight="400" font-family="ui-monospace, Menlo, monospace">m</text>
+<rect x="323.0" y="152.0" width="25.0" height="28.0" rx="5" fill="none" stroke="#c5b6a2" stroke-width="1.25"/>
+<text x="335.5" y="171.0" text-anchor="middle" font-size="13" fill="#6f6459" font-weight="400" font-family="ui-monospace, Menlo, monospace">_</text>
+<rect x="440.0" y="152.0" width="25.0" height="28.0" rx="5" fill="none" stroke="#c5b6a2" stroke-width="1.25"/>
+<text x="452.5" y="171.0" text-anchor="middle" font-size="13" fill="#6f6459" font-weight="400" font-family="ui-monospace, Menlo, monospace">q</text>
+<rect x="470.0" y="152.0" width="25.0" height="28.0" rx="5" fill="none" stroke="#c5b6a2" stroke-width="1.25"/>
+<text x="482.5" y="171.0" text-anchor="middle" font-size="13" fill="#6f6459" font-weight="400" font-family="ui-monospace, Menlo, monospace">u</text>
+<rect x="500.0" y="152.0" width="25.0" height="28.0" rx="5" fill="none" stroke="#c5b6a2" stroke-width="1.25"/>
+<text x="512.5" y="171.0" text-anchor="middle" font-size="13" fill="#6f6459" font-weight="400" font-family="ui-monospace, Menlo, monospace">e</text>
+<rect x="530.0" y="152.0" width="47.0" height="28.0" rx="5" fill="#d8e6ef" stroke="#2f6a91" stroke-width="1.5"/>
+<text x="553.5" y="171.0" text-anchor="middle" font-size="13" fill="#221a14" font-weight="400" font-family="ui-monospace, Menlo, monospace">en_</text>
+<text x="648.0" y="170.0" text-anchor="middle" font-size="13" fill="#221a14" font-weight="400">34</text>
+<text x="712.0" y="170.0" text-anchor="middle" font-size="13" fill="#2f6a91" font-weight="600">198</text>
+<text x="94.0" y="214.0" text-anchor="middle" font-size="13" fill="#221a14" font-weight="400">20</text>
+<rect x="170.0" y="196.0" width="58.0" height="28.0" rx="5" fill="#d8e6ef" stroke="#2f6a91" stroke-width="1.5"/>
+<text x="199.0" y="215.0" text-anchor="middle" font-size="13" fill="#221a14" font-weight="400" font-family="ui-monospace, Menlo, monospace">king</text>
+<rect x="233.0" y="196.0" width="25.0" height="28.0" rx="5" fill="none" stroke="#c5b6a2" stroke-width="1.25"/>
+<text x="245.5" y="215.0" text-anchor="middle" font-size="13" fill="#6f6459" font-weight="400" font-family="ui-monospace, Menlo, monospace">d</text>
+<rect x="263.0" y="196.0" width="25.0" height="28.0" rx="5" fill="none" stroke="#c5b6a2" stroke-width="1.25"/>
+<text x="275.5" y="215.0" text-anchor="middle" font-size="13" fill="#6f6459" font-weight="400" font-family="ui-monospace, Menlo, monospace">o</text>
+<rect x="293.0" y="196.0" width="36.0" height="28.0" rx="5" fill="#d8e6ef" stroke="#2f6a91" stroke-width="1.5"/>
+<text x="311.0" y="215.0" text-anchor="middle" font-size="13" fill="#221a14" font-weight="400" font-family="ui-monospace, Menlo, monospace">m_</text>
+<rect x="440.0" y="196.0" width="80.0" height="28.0" rx="5" fill="#d8e6ef" stroke="#2f6a91" stroke-width="1.5"/>
+<text x="480.0" y="215.0" text-anchor="middle" font-size="13" fill="#221a14" font-weight="400" font-family="ui-monospace, Menlo, monospace">queen_</text>
+<text x="648.0" y="214.0" text-anchor="middle" font-size="13" fill="#221a14" font-weight="400">44</text>
+<text x="712.0" y="214.0" text-anchor="middle" font-size="13" fill="#2f6a91" font-weight="600">162</text>
+<text x="94.0" y="258.0" text-anchor="middle" font-size="13" fill="#221a14" font-weight="400">60</text>
+<rect x="170.0" y="240.0" width="102.0" height="28.0" rx="5" fill="#d8e6ef" stroke="#2f6a91" stroke-width="1.5"/>
+<text x="221.0" y="259.0" text-anchor="middle" font-size="13" fill="#221a14" font-weight="400" font-family="ui-monospace, Menlo, monospace">kingdom_</text>
+<rect x="440.0" y="240.0" width="80.0" height="28.0" rx="5" fill="#d8e6ef" stroke="#2f6a91" stroke-width="1.5"/>
+<text x="480.0" y="259.0" text-anchor="middle" font-size="13" fill="#221a14" font-weight="400" font-family="ui-monospace, Menlo, monospace">queen_</text>
+<text x="648.0" y="258.0" text-anchor="middle" font-size="13" fill="#221a14" font-weight="400">84</text>
+<text x="712.0" y="258.0" text-anchor="middle" font-size="13" fill="#2f6a91" font-weight="600">81</text>
+<line x1="30.0" y1="100.0" x2="740.0" y2="100.0" stroke="#d5c8b6" stroke-width="1"/>
+<text x="380.0" y="302.0" text-anchor="middle" font-size="12.5" fill="#5a4d42" font-weight="400">more merges: longer pieces, a bigger table, fewer tokens per sentence</text>
+</svg>

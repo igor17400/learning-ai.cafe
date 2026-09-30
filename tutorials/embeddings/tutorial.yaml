@@ -33,30 +33,25 @@ pages:
       slug: "geometry",
       title: "The Shape of the Space",
       subtitle: "Cosine similarity, directions, and what an analogy really measures.",
-      status: "planned",
     }
   - {
       slug: "subwords",
       title: "The Vocabulary Problem",
       subtitle: "Rare words, typos, and why the table is built from pieces.",
-      status: "planned",
     }
   - {
       slug: "limits",
       title: "Where One Vector per Word Runs Out",
       subtitle: "A word with two meanings gets one row, and the row is an average.",
-      status: "planned",
     }
   - {
       slug: "contextual",
       title: "Contextual Embeddings",
       subtitle: "A vector computed per sentence rather than looked up per word.",
-      status: "planned",
     }
   - {
       slug: "reading_a_model",
       title: "Reading a Modern Embedding Model",
       subtitle: "What comes out of a sentence encoder, and how to judge it.",
-      status: "planned",
     }
   - { slug: "references", title: "References" }
