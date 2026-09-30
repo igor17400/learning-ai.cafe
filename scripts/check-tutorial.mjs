@@ -123,11 +123,13 @@ function checkTutorial(slug) {
   const languages = (/^languages:\s*\[([^\]]*)\]/m.exec(yaml)?.[1] || "en")
     .split(",")
     .map((s) => s.trim().replace(/"/g, ""));
-  const pages = [
-    ...yaml.matchAll(
-      /"?slug"?:\s*"?([a-z0-9_]+)"?[^}\n]*?(?:"?status"?:\s*"?(\w+)"?)?/g,
-    ),
-  ].map((m) => ({ slug: m[1], status: m[2] || "written" }));
+  // one { ... } entry per page; Prettier may wrap it over several lines
+  const pages = [...yaml.matchAll(/\{[^}]*\}/g)]
+    .map(([entry]) => ({
+      slug: /"?slug"?:\s*"?([a-z0-9_]+)/.exec(entry)?.[1],
+      status: /"?status"?:\s*"?(\w+)/.exec(entry)?.[1] || "written",
+    }))
+    .filter((p) => p.slug);
   // page files as "<lang>/<page>.md"; the first language is the default
   const pageFiles = languages.flatMap((l) =>
     existsSync(join(dir, "pages", l))
