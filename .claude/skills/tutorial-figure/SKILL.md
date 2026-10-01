@@ -34,7 +34,9 @@ Write these four lines and agree them with the user:
 ## SVG requirements
 
 - `viewBox` set; no fixed `width`/`height` on the root, or the page cannot
-  scale it. Aspect ratio between 3:2 and 2:1 for full-width figures; the book
+  scale it. Crop the viewBox to the drawing: at most 8 units of empty canvas
+  on any side, since the page adds its own spacing and a padded canvas pushes
+  the caption away from the figure. Aspect ratio between 3:2 and 2:1 for full-width figures; the book
   mode caps height at 38% of the screen, so tall figures shrink badly.
 - Text converted to outlines, or limited to system fonts (`Inter`, `sans-serif`).
   No web font references, no `@import`.

@@ -1,0 +1,57 @@
+schema: 1
+id: "cafe/embeddings"
+title: "Embeddings"
+track: "Foundations"
+tagline: "How a word becomes a vector, and what that vector is allowed to mean."
+cover: "stag"
+hue: 210
+languages: ["en"]
+requires: []
+related: ["cafe/attention"]
+pages:
+  - {
+      slug: "intro",
+      title: "Word Has to Become a Vector",
+      subtitle: "A model does arithmetic, and a word is not a number.",
+    }
+  - {
+      slug: "one_hot",
+      title: "The One-Hot Baseline",
+      subtitle: "The obvious encoding, and the two things it cannot do.",
+    }
+  - {
+      slug: "distributional",
+      title: "The Company a Word Keeps",
+      subtitle: "Meaning from context: the idea the whole field is built on.",
+    }
+  - {
+      slug: "word2vec",
+      title: "Learning by Prediction",
+      subtitle: "word2vec, negative sampling, and what the training signal actually is.",
+    }
+  - {
+      slug: "geometry",
+      title: "The Shape of the Space",
+      subtitle: "Cosine similarity, directions, and what an analogy really measures.",
+    }
+  - {
+      slug: "subwords",
+      title: "The Vocabulary Problem",
+      subtitle: "Rare words, typos, and why the table is built from pieces.",
+    }
+  - {
+      slug: "limits",
+      title: "Where One Vector per Word Runs Out",
+      subtitle: "A word with two meanings gets one row, and the row is an average.",
+    }
+  - {
+      slug: "contextual",
+      title: "Contextual Embeddings",
+      subtitle: "A vector computed per sentence rather than looked up per word.",
+    }
+  - {
+      slug: "reading_a_model",
+      title: "Reading a Modern Embedding Model",
+      subtitle: "What comes out of a sentence encoder, and how to judge it.",
+    }
+  - { slug: "references", title: "References" }

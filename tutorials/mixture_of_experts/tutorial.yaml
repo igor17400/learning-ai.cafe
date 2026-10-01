@@ -1,0 +1,67 @@
+schema: 1
+id: "cafe/mixture_of_experts"
+title: "Mixture of Experts"
+track: "Architectures"
+tagline: "Activating only the necessary parameters, and managing the load-balancing challenges of dynamic routing."
+cover: "griffin"
+hue: 150
+languages: ["en"]
+requires: ["cafe/attention"]
+related: []
+pages:
+  - {
+      "slug": "dense_layer",
+      "title": "The Layer That Reads Everything",
+      "subtitle": "A feed-forward layer spends all of itself on every token.",
+    }
+  - {
+      "slug": "competing_experts",
+      "title": "Committee or Competition",
+      "subtitle": "Two ways to combine several networks, and only one of them specialises.",
+    }
+  - {
+      "slug": "conditional_computation",
+      "title": "Compute You Can Skip",
+      "subtitle": "If the gate is zero, the expert never runs.",
+    }
+  - {
+      "slug": "the_router",
+      "title": "A Decision With No Label",
+      "subtitle": "The router picks an expert, and nothing tells it which one was right.",
+    }
+  - {
+      "slug": "capacity_and_dropping",
+      "title": "Fixed Buffers, Dropped Tokens",
+      "subtitle": "The hardware wants a rectangle, and the router does not produce one.",
+    }
+  - {
+      "slug": "load_balancing",
+      "title": "Teaching the Router to Share",
+      "subtitle": "A penalty that makes an even split cheaper than a favourite.",
+      "status": "planned",
+    }
+  - {
+      "slug": "router_zoo",
+      "title": "Who Chooses Whom",
+      "subtitle": "Tokens can pick experts, experts can pick tokens, or nobody can pick.",
+      "status": "planned",
+    }
+  - {
+      "slug": "failure_modes",
+      "title": "Collapse, and Its Three Meanings",
+      "subtitle": "The word covers three different failures with three different fixes.",
+      "status": "planned",
+    }
+  - {
+      "slug": "what_experts_learn",
+      "title": "What an Expert Turns Out to Be",
+      "subtitle": "Specialisation is real at the level of surface form and rarely deeper.",
+      "status": "planned",
+    }
+  - {
+      "slug": "many_modalities",
+      "title": "More Than One Kind of Input",
+      "subtitle": "Everything so far assumed the tokens were alike.",
+      "status": "planned",
+    }
+  - { slug: "references", title: "References" }

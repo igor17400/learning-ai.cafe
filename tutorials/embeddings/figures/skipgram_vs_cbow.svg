@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 280" font-family="Inter, system-ui, sans-serif">
+<text x="200" y="32" text-anchor="middle" font-size="12.5" fill="#2f6a91" font-weight="600">SKIP-GRAM</text>
+<text x="200" y="54" text-anchor="middle" font-size="12" fill="#6f6459" font-weight="400">predict the context from the centre</text>
+<rect x="38" y="116" width="78" height="32" rx="7" fill="#d8e6ef" stroke="#2f6a91" stroke-width="1.2"/>
+<text x="77.0" y="137" text-anchor="middle" font-size="13" fill="#221a14" font-weight="400">the</text>
+<rect x="38" y="192" width="78" height="32" rx="7" fill="#d8e6ef" stroke="#2f6a91" stroke-width="1.2"/>
+<text x="77.0" y="213" text-anchor="middle" font-size="13" fill="#221a14" font-weight="400">king</text>
+<rect x="284" y="116" width="78" height="32" rx="7" fill="#d8e6ef" stroke="#2f6a91" stroke-width="1.2"/>
+<text x="323.0" y="137" text-anchor="middle" font-size="13" fill="#221a14" font-weight="400">on</text>
+<rect x="284" y="192" width="78" height="32" rx="7" fill="#d8e6ef" stroke="#2f6a91" stroke-width="1.2"/>
+<text x="323.0" y="213" text-anchor="middle" font-size="13" fill="#221a14" font-weight="400">the</text>
+<rect x="161" y="154" width="78" height="32" rx="7" fill="#2f6a91" stroke="#2f6a91" stroke-width="1.4"/>
+<text x="200" y="175" text-anchor="middle" font-size="13.5" fill="#ffffff" font-weight="400">sat</text>
+<line x1="158.1" y1="157.1" x2="118.9" y2="144.9" stroke="#2f6a91" stroke-width="1.6"/><path d="M 118.9 144.9 L 126.3 143.8 L 124.4 150.0 Z" fill="#2f6a91"/>
+<line x1="158.1" y1="182.9" x2="118.9" y2="195.1" stroke="#2f6a91" stroke-width="1.6"/><path d="M 118.9 195.1 L 124.4 190.0 L 126.3 196.2 Z" fill="#2f6a91"/>
+<line x1="241.9" y1="157.1" x2="281.1" y2="144.9" stroke="#2f6a91" stroke-width="1.6"/><path d="M 281.1 144.9 L 275.6 150.0 L 273.7 143.8 Z" fill="#2f6a91"/>
+<line x1="241.9" y1="182.9" x2="281.1" y2="195.1" stroke="#2f6a91" stroke-width="1.6"/><path d="M 281.1 195.1 L 273.7 196.2 L 275.6 190.0 Z" fill="#2f6a91"/>
+<text x="200" y="248" text-anchor="middle" font-size="12" fill="#5a4d42" font-weight="400">one word in, four guesses out</text>
+<text x="560" y="32" text-anchor="middle" font-size="12.5" fill="#2f6a91" font-weight="600">CBOW</text>
+<text x="560" y="54" text-anchor="middle" font-size="12" fill="#6f6459" font-weight="400">predict the centre from the context</text>
+<rect x="398" y="116" width="78" height="32" rx="7" fill="#d8e6ef" stroke="#2f6a91" stroke-width="1.2"/>
+<text x="437.0" y="137" text-anchor="middle" font-size="13" fill="#221a14" font-weight="400">the</text>
+<rect x="398" y="192" width="78" height="32" rx="7" fill="#d8e6ef" stroke="#2f6a91" stroke-width="1.2"/>
+<text x="437.0" y="213" text-anchor="middle" font-size="13" fill="#221a14" font-weight="400">king</text>
+<rect x="644" y="116" width="78" height="32" rx="7" fill="#d8e6ef" stroke="#2f6a91" stroke-width="1.2"/>
+<text x="683.0" y="137" text-anchor="middle" font-size="13" fill="#221a14" font-weight="400">on</text>
+<rect x="644" y="192" width="78" height="32" rx="7" fill="#d8e6ef" stroke="#2f6a91" stroke-width="1.2"/>
+<text x="683.0" y="213" text-anchor="middle" font-size="13" fill="#221a14" font-weight="400">the</text>
+<rect x="521" y="154" width="78" height="32" rx="7" fill="#2f6a91" stroke="#2f6a91" stroke-width="1.4"/>
+<text x="560" y="175" text-anchor="middle" font-size="13.5" fill="#ffffff" font-weight="400">sat</text>
+<line x1="478.9" y1="144.9" x2="518.1" y2="157.1" stroke="#2f6a91" stroke-width="1.6"/><path d="M 518.1 157.1 L 510.7 158.2 L 512.6 152.0 Z" fill="#2f6a91"/>
+<line x1="478.9" y1="195.1" x2="518.1" y2="182.9" stroke="#2f6a91" stroke-width="1.6"/><path d="M 518.1 182.9 L 512.6 188.0 L 510.7 181.8 Z" fill="#2f6a91"/>
+<line x1="641.1" y1="144.9" x2="601.9" y2="157.1" stroke="#2f6a91" stroke-width="1.6"/><path d="M 601.9 157.1 L 607.4 152.0 L 609.3 158.2 Z" fill="#2f6a91"/>
+<line x1="641.1" y1="195.1" x2="601.9" y2="182.9" stroke="#2f6a91" stroke-width="1.6"/><path d="M 601.9 182.9 L 609.3 181.8 L 607.4 188.0 Z" fill="#2f6a91"/>
+<text x="560" y="248" text-anchor="middle" font-size="12" fill="#5a4d42" font-weight="400">four words in, one guess out</text>
+<line x1="380" y1="22" x2="380" y2="266" stroke="#c5b6a2" stroke-width="1.3"/>
+</svg>

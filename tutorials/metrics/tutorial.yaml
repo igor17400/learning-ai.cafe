@@ -1,0 +1,99 @@
+schema: 1
+id: "cafe/metrics"
+title: "Metrics"
+track: "Evaluation"
+tagline: "Leaving out parts of the truth: an analysis of metric estimation, theoretical assumptions, and points of structural failure in ML/DL."
+cover: "lion"
+hue: 40
+languages: ["en"]
+requires: []
+related: []
+pages:
+  - {
+      "slug": "what_is_a_metric",
+      "title": "What a Metric Actually Is",
+      "subtitle": "An estimator of a population quantity, paired with an unacknowledged design choice.",
+    }
+  - {
+      "slug": "tpr_fpr",
+      "title": "TPR and FPR",
+      "subtitle": "Why evaluating ratios strictly within class boundaries defines the entire evaluation mechanism.",
+    }
+  - {
+      "slug": "accuracy",
+      "title": "Accuracy",
+      "subtitle": "An exact answer to a question almost nobody meant to ask.",
+    }
+  - {
+      "slug": "balanced_accuracy",
+      "title": "Balanced Accuracy",
+      "subtitle": "Accuracy, evaluated at a prevalence of one half.",
+    }
+  - {
+      "slug": "precision",
+      "title": "Precision",
+      "subtitle": "A point on the ROC curve, read at a declared prevalence.",
+    }
+  - {
+      "slug": "f1",
+      "title": "F1",
+      "subtitle": "Precision's dependence, plus a cost that moves when the model improves.",
+    }
+  - {
+      "slug": "auroc",
+      "title": "ROC and AUROC",
+      "subtitle": "Invariance is not neutrality. It is a prior over deployment prevalence, chosen by the model.",
+    }
+  - {
+      "slug": "partial_auroc",
+      "title": "Partial AUROC",
+      "subtitle": "Caring about the top of the ranking without leaving ROC space.",
+    }
+  - {
+      "slug": "auprc",
+      "title": "PR Curves and AUPRC",
+      "subtitle": "A legitimate preference for high-scoring mistakes, and a terrible imbalance correction.",
+    }
+  - {
+      "slug": "estimator_variance",
+      "title": "Variance at Low Prevalence",
+      "subtitle": "An invariant estimand measured from fifty positives is not a robust measurement.",
+      "status": "planned",
+    }
+  - {
+      "slug": "calibration",
+      "title": "Calibration and ECE",
+      "subtitle": "Not a proper scoring rule, and aimed at the wrong target: only the operative score band has to be calibrated.",
+      "status": "planned",
+    }
+  - {
+      "slug": "brier",
+      "title": "Brier Score",
+      "subtitle": "Proper, and equivalent to averaging net benefit under a uniform prior over prevalence.",
+      "status": "planned",
+    }
+  - {
+      "slug": "log_score",
+      "title": "Log Score",
+      "subtitle": "The training loss itself, unbounded, and quietly weighting prevalences that never occur in deployment.",
+      "status": "planned",
+    }
+  - {
+      "slug": "net_benefit",
+      "title": "Net Benefit",
+      "subtitle": "A threshold is a statement about cost. Every earlier metric made that statement by accident.",
+      "status": "planned",
+    }
+  - {
+      "slug": "bounded_dca",
+      "title": "Bounded DCA Log Score",
+      "subtitle": "Calibration, a declared prevalence band, and cost asymmetry in one number.",
+      "status": "planned",
+    }
+  - {
+      "slug": "what_to_report",
+      "title": "What to Report",
+      "subtitle": "There is no single number. State the assumptions instead of inheriting them.",
+      "status": "planned",
+    }
+  - { slug: "references", title: "References" }
